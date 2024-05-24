@@ -57,7 +57,7 @@ async function createMusicCards(search) {
     songs.forEach(song => {
  
         createAlbumElement(song);
-
+        quickpicks(song);
     });
 }
 
@@ -108,6 +108,39 @@ function createAlbumElement(song) {
     listItem.appendChild(contentContainer);
     itemsElement.appendChild(listItem); // Appending the song element to items
 }
+function quickpicks(song) {
+    const quick_itemsElement = document.getElementById('categories');
+    const quick_listItem = document.createElement('li');
+    quick_listItem.classList.add('category');
+    const cardContainer = document.createElement('div');
+    cardContainer.classList.add('card');
+    const quickpicksTitle = document.createElement('div');
+    quickpicksTitle.classList.add('quick-picks-title');
+    const image = document.createElement('img');
+    image.src = song.thumbnail;
+    quickpicksTitle.appendChild(image);
+    const titleContainer = document.createElement('div');
+    titleContainer.classList.add('quick-picks-title-p');
+    const text = document.createElement('p');
+    text.textContent = song.title;
+    titleContainer.appendChild(text)
+    quickpicksTitle.appendChild(titleContainer);
+
+
+    const authorContainer = document.createElement('div');
+    authorContainer.classList.add('quick-picks-author');
+    const authorText = document.createElement('p');
+    authorText.textContent = song.author;
+    authorText.classList.add('author-text');
+    authorContainer.appendChild(authorText);
+    quickpicksTitle.appendChild(authorContainer);
+
+    cardContainer.appendChild(quickpicksTitle)
+    quick_listItem.appendChild(cardContainer);
+    quick_itemsElement.appendChild(quick_listItem);
+
+}
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const prevButton = document.getElementById('prevButton');
