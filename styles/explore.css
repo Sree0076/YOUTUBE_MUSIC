@@ -1,0 +1,354 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    /* background-color: black; */
+    color: white;
+}
+
+.w-85{
+    width: 90%;
+}
+
+.toggleandlogo {
+    align-items: center;
+}
+
+::after,
+::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1 {
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.main {
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    transition: all 0.35s ease-in-out;
+}
+
+#sidebar {
+    width: 70px;
+    min-width: 70px;
+    z-index: 1000;
+    transition: all ;
+}
+
+#sidebar.expand .sidebarnav{
+    position: fixed;
+}
+
+
+
+
+
+#sidebar.expand {
+    width: 240px;
+    min-width: 240px;
+    border-right: .5px solid rgba(255, 255, 255, 0.178);
+}
+
+.toggle-btn {
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
+    padding: 1rem 1.5rem;
+}
+
+.toggle-btn i {
+    font-size: 1.5rem;
+    color: white;
+}
+
+.sidebar-logo {
+    margin: auto 0;
+    width: fit-content;
+}
+
+.sidebar-logo a {
+    color: white;
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+#sidebar:not(.expand) .sidebar-logo,
+#sidebar:not(.expand) a.sidebar-link span {
+    display: none;
+}
+
+
+
+.musiclogo {
+    height: 30px;
+}
+
+ul li {
+    color: white;
+    text-decoration: none;
+}
+
+
+.rightsection{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.rightnav {
+    padding-top: 15px;
+    z-index: 5;
+    position: fixed;
+    width: 500px;
+    height: 65px;
+}
+
+
+.searchbar{
+    /* margin-top: 15px; */
+    margin-left: 100px;
+    /* margin-bottom: 15px; */
+    width: 500px;
+    background-color: rgb(128, 128, 128);
+    opacity: 40%;
+}
+
+.input-icon {
+    position: relative;
+}
+
+.input-icon > i {
+    position: absolute;
+    left: 110px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #aaa;
+}
+
+.input-icon > input {
+    padding-left: 35px;
+}
+
+.input-icon > input::placeholder {
+    padding-left: 20px;
+    color: #fff;
+}
+
+.searchbardiv {
+    margin-left: 80px;
+}
+
+
+
+
+/* New CSS */
+
+.navbarbutton:hover{
+    background-color: rgba(128, 128, 128, 0.333);
+
+}
+.home {
+    align-items: center;
+    font-size: 12px; /* Font size for collapsed state */
+    text-align: center;
+    /* padding: 10px 0; */
+}
+#sidebar.expand .homeicon {
+    padding-left: 10px;
+    padding-right: 20px;
+}
+
+
+
+
+
+#sidebar.expand .home {
+    
+    font-size: 16px; /* Font size for expanded state */
+}
+
+#sidebar.expand .sidebar-text {
+    
+    display: inline;
+    margin-left: 10px; /* Space between icon and text */
+}
+
+
+.scrollcontents{
+    background-color: black; 
+    margin-top: 65px;
+    height: 200vh;
+}
+
+
+
+.sidebarnav {
+    position: fixed; /* Make the sidebar items fixed */
+    top: 0; /* Position at the top of the viewport */
+    bottom: 0; /* Expand the sidebar items to the bottom of the viewport */
+    width: 70px; /* Set the width of the sidebar when collapsed */
+}
+
+#sidebar.expand .sidebarnav {
+    width: 240px; /* Set the width of the sidebar when expanded */
+}
+
+.newrelease{
+    width: 82%;
+    margin-left: 9%;
+  
+}
+
+.newreleasebutton{
+    background-color: rgba(128, 128, 128, 0.242);
+}
+
+.newreleasebutton:hover{
+    background-color: rgba(128, 128, 128, 0.151);
+}
+h2{
+    color: white;
+    font-weight: bold;
+    font-size: 150%; /*1.5em*/
+   
+}
+.newalbums-singles{
+    margin-left: 9%;
+}
+.slider-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-left: 9%;
+    margin-right: 100px;
+   
+   
+  }
+ 
+  
+  .newalbums-singles-slider {
+    list-style: none;
+    padding: 0;
+    
+  }
+  
+  .newalbums-singles-slider li {
+    display: inline-block;
+    margin-right: 20px; 
+  }
+  
+
+ 
+
+  #items {
+    display: flex;
+    flex-wrap: nowrap; /* Ensures items won't wrap to the next line */
+    overflow-x: auto; /* Allows horizontal scrolling if items exceed container width */
+  }
+
+
+  .song-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 250px;
+   
+
+  }
+  
+  /* Style the parent container for image and details */
+  .content-container {
+    width: 150px; /* Adjust the width as needed */
+  }
+  
+  /* Style the image container */
+  .image-container {
+    width: 100%;
+    margin-top: 2%;
+  }
+   
+  .image-container img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 5px;
+    border: none;
+    border-radius: 5px;
+    display: block;
+  } 
+  
+  /* Style the details container */
+  .details-container {
+    text-align: center;
+    
+  }
+/* Style the title */
+.title {
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 14px;
+   
+    
+  }
+  
+  /* Style the details */
+  .details {
+    font-size: 0.8em; /* Adjust the font size as needed */
+    /* white-space: nowrap; */
+  }
+  .newalbums-singles-slider::-webkit-scrollbar, .moods-genres-container::-webkit-scrollbar{
+    background-color: black; 
+   
+  }
+  .newalbums-singles-slider::-webkit-scrollbar-thumb , .moods-genres-container::-webkit-scrollbar-thumb{
+    background-color: rgb(136, 136, 136); 
+    
+    
+  }
+  .moods-genres{
+    margin-top: 13%;
+    margin-left: 9%;
+    height: 200%;
+  }
+  .moods-genres-container {
+    max-height: 500px; /* Adjust height as needed */
+    overflow-y: hidden; /* Change from 'auto' to 'hidden' */
+    overflow-x: auto; /* Add overflow-x for horizontal scrollbar if needed */
+    white-space: nowrap;
+    margin-left: 9%;
+    margin-right: 10%;
+}
+
+.moods-genres-lists {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(4, 1fr); /* Example: 4 rows */
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    /* grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); Adjust column width as needed */
+     gap: 15px; 
+    list-style: none;
+    white-space: nowrap;
+     margin-bottom: 3%;
+    width: 150%;
+    margin-left: -4%;
+   
+}
+
+.card {
+    width: 150px;
+    height: 90%;
+    border-left: 5px solid #7d1d1d;
+    padding: 10%;
+    color: white;
+    font-weight: bolder;
+    font-size: 90%;
+    background-color: rgb(43, 43, 43);
+}
