@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test YM</title>
+    <title>YTM Music Player</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
    
@@ -35,7 +35,7 @@
         </div>
      
         <div class="d-flex flex-row flex-wrap align-items-center justify-content-center m-0 p-0" id="songDetailsDiv">
-            <img id="playerSongImage" class="me-3">
+            <img id="playerSongImage" class="me-3" alt="playerSongImage">
             <div id="songTextDetails" class="d-flex flex-column flex-wrap p-0 m-0 me-2">
                 <label id="songName"></label>
                 <label id="songOtherDetails"></label>
@@ -45,11 +45,36 @@
             <button class="btn btn-dark playPauseButton"><i class="fas fa-ellipsis-v"></i></button>
         </div>
         <div class="d-flex flex-row flex-wrap align-items-center justify-content-center m-0 p-0" id="playerEndBtns">
-            <button class="btn btn-dark playPauseButton"><i class="fas fa-volume-up"></i></button>
+            <button class="btn btn-dark playPauseButton" id="volumeBtn"><i class="fas fa-volume-up"></i></button>
             <button class="btn btn-dark playPauseButton"><i class="fas fa-redo"></i></button>
             <button class="btn btn-dark playPauseButton"><i class="fas fa-random"></i></button>
-            <button class="btn btn-dark playPauseButton"><i class="fas fa-sort-up"></i></i></button>
+            <button class="btn btn-dark playPauseButton" id="popUpBtn"><i class="fas fa-caret-up"></i></button>
         </div>
+    </div>
+</div>
+<div id="popUpDiv">
+    <div  class="song-video-Div">
+        <ul class="nav nav-pills rounded">
+            <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="pill" href="#songTab">Song</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="pill" href="#videoTab">Video</button>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div id="songTab" class="tab-pane fade show p-0 active">
+                <img id="popUpImage" alt="popUpImage">
+            </div>
+        </div>
+        <div class="tab-content">
+            <div id="videoTab" class="tab-pane fade show p-0">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/_sdGElmBck4?si=bwspW9CY7T4o0SVb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+    <div id="listDiv">
+
     </div>
 </div>
     <script src="../js/musicplayer.js"></script>

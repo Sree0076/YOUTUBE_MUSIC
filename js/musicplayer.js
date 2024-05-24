@@ -18,6 +18,15 @@ let songAlbum='Sangamam';
 let songYear='2023';
 const songOtherDetails=document.getElementById('songOtherDetails');
 const circleIcon='<i class="fas fa-circle fa-xs"></i>';
+const popUpBtn=document.getElementById('popUpBtn');
+const popUpDiv=document.getElementById('popUpDiv');
+const popUpIcon='<i class="fas fa-caret-up"></i>';
+const popDownIcon='<i class="fas fa-caret-down"></i>';
+const muteIcon='<i class="fas fa-volume-mute"></i>';
+const volumeIcon='<i class="fas fa-volume-up"></i>';
+const volumeBtn=document.getElementById('volumeBtn');
+const popUpImage=document.getElementById('popUpImage');
+let songPopUpImage='../assets/varahaipopup.png'
 
 playPauseBtn.addEventListener("click",togglePlayPause);
 function togglePlayPause(){
@@ -51,6 +60,26 @@ songProgress.addEventListener('input',()=>{
     clearInterval(sliderProgress);  
   })
 
+popUpBtn.addEventListener('click',()=>{
+    if(popUpDiv.style.display==='block'){
+        popUpDiv.style.display='none';
+        popUpBtn.innerHTML=popUpIcon;
+    }
+    else{
+        popUpDiv.style.display='block';
+        popUpBtn.innerHTML=popDownIcon;
+    }
+})
 
+volumeBtn.addEventListener('click',()=>{
+    if(selectedSong.volume===0){
+        selectedSong.volume=1;
+        volumeBtn.innerHTML=volumeIcon;
+    }
+    else{
+        selectedSong.volume=0;
+        volumeBtn.innerHTML=muteIcon;
+    }
+})
 
-
+popUpImage.src=songPopUpImage;
