@@ -14,18 +14,18 @@
 <body>
  
   
-    <audio id="selectedSong" preload="auto">  //set autoplay to 0
+    <!-- <audio id="selectedSong" preload="auto">  //set autoplay to 0
         <source src="../assets/Varaha-Nadikkarai-Oram.mp3" type="audio/mpeg"> 
-    </audio>
+    </audio> -->
     <div class="container-fluid align-items-start d-flex flex-wrap flex-row justify-content-start p-0" id="musicPlayer">
         <input type="range" min="0" value="0" max="100" id="songProgress">
     <div class="container-fluid align-items-center justify-content-between d-flex flex-row flex-wrap" id="contentDiv">
         
         <div class="d-flex m-2 flex-wrap justify-content-between" id="playPause">
            
-            <button class="btn btn-dark playPauseButton"><i class="fas fa-step-backward"></i></button>
+            <button class="btn btn-dark playPauseButton" id="previousSongBtn"><i class="fas fa-step-backward"></i></button>
           
-            <button class="btn btn-dark playPauseButton" id="playPauseBtn"><i class="fas fa-play"></i></i></button>
+            <button class="btn btn-dark playPauseButton" id="playPauseBtn"><i class="fas fa-play"></i></button>
 
             <button class="btn btn-dark playPauseButton me-3" id="nextSongBtn"><i class="fas fa-step-forward"></i></button>
 
@@ -40,8 +40,8 @@
                 <label id="songName"></label>
                 <label id="songOtherDetails"></label>
             </div>
-            <button class="btn btn-dark playPauseButton"><i class="fas fa-thumbs-down fa-flip-horizontal"></i></button>
-            <button class="btn btn-dark playPauseButton"><i class="fas fa-thumbs-up"></i></button>
+            <button class="btn btn-dark playPauseButton"><i class="far fa-thumbs-down fa-flip-horizontal"></i></button>
+            <button class="btn btn-dark playPauseButton"><i class="far fa-thumbs-up"></i></button>
             <button class="btn btn-dark playPauseButton"><i class="fas fa-ellipsis-v"></i></button>
         </div>
         <div class="d-flex flex-row flex-wrap align-items-center justify-content-center m-0 p-0" id="playerEndBtns">
@@ -52,11 +52,11 @@
         </div>
     </div>
 </div>
-<div id="popUpDiv">
+<div id="popUpDiv" class="d-flex flex-wrap flex-column">
     <div  class="song-video-Div">
         <ul class="nav nav-pills rounded">
             <li class="nav-item">
-                <button class="nav-link" data-bs-toggle="pill" href="#songTab">Song</button>
+                <button class="nav-link active" data-bs-toggle="pill" href="#songTab">Song</button>
             </li>
             <li class="nav-item">
                 <button class="nav-link" data-bs-toggle="pill" href="#videoTab">Video</button>
@@ -69,12 +69,19 @@
         </div>
         <div class="tab-content">
             <div id="videoTab" class="tab-pane fade show p-0">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/_sdGElmBck4?si=bwspW9CY7T4o0SVb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <!-- <iframe width="560" height="315" src="https://ssrpde.ytjar.xyz/rr3---sn-4g5e6ns6.googlevideo.com/videoplayback?expire=1716978706&ei=sq9WZpWzLrLZ6dsPq7qeiAY&ip=2a01%3A4f8%3A1c1c%3A15cc%3Aeb07%3Acd31%3Affc9%3Ac999&id=o-ABT3Fnp59_w2Rma4mT89iqqn8P04Mrw-1VE1M_nzH9Pg&itag=18&source=youtube&requiressl=yes&xpc=EgVo2aDSNQ%3D%3D&mh=bY&mm=31%2C26&mn=sn-4g5e6ns6%2Csn-f5f7lnld&ms=au%2Conr&mv=m&mvi=3&pl=49&gcr=de&initcwndbps=525000&vprv=1&svpuc=1&mime=video%2Fmp4&rqh=1&cnr=14&ratebypass=yes&dur=220.403&lmt=1661256184068105&mt=1716956680&fvip=4&c=ANDROID_TESTSUITE&txp=2318224&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cxpc%2Cgcr%2Cvprv%2Csvpuc%2Cmime%2Crqh%2Ccnr%2Cratebypass%2Cdur%2Clmt&sig=AJfQdSswRAIgCReOe65nr-HItZqHfbCxm2n0wk91-DUDu-NCmAQa_EACIF2_SHDmLw0-jsDlZMBkSisPsLf8A313N5zlY6zZoV6v&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&lsig=AHWaYeowRAIgRXpTHf5yCPUJRY3eI4oF58yHnNqEXqvi8jwzuGoQDEgCIF2458KgCf3xKRmuak840OYQkRTj4ZUMJlEM3Uih5F9r" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
+
+                <video id="videoController" width="560" height="315" controls>
+                    <source id="videoPlayer" src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
             </div>
         </div>
     </div>
     <div id="listDiv">
-        
+        <ul id="songList">
+            <!-- <div id="playPauseOverlay"><i class="fas fa-play"></i></div> -->
+        </ul>
     </div>
 </div>
     <script src="../js/musicplayer.js"></script>
