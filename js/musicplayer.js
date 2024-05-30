@@ -166,12 +166,14 @@ window.onload = function() {
                 newListItem.addEventListener('mouseenter',()=>{
                     newListItem.style.backgroundColor='grey';
                     playPauseOverlay.style.opacity='1'
+                    newListItem.style.cursor='pointer'
                 })
                 newListItem.addEventListener('mouseleave',()=>{
                     newListItem.style.backgroundColor='';
                     playPauseOverlay.style.opacity=''
+                    newListItem.style.cursor=''
                 })
-                newListItem.addEventListener('click',()=>{
+                playPauseOverlay.addEventListener('click',()=>{
                     // localStorage.setItem('songId', newSongId);
                     // location.reload(true);
                     nextClickCounter=newClickCounter;
@@ -389,15 +391,14 @@ window.onload = function() {
             
         
         popUpBtn.addEventListener('click',()=>{
-            if(popUpDiv.style.opacity==='1'){
-                popUpDiv.style.opacity='0';
+            if(popUpDiv.style.visibility==='visible'){
+                popUpDiv.style.visibility='hidden';
                 popUpBtn.innerHTML=popUpIcon;
             }
             else{
-                popUpDiv.style.opacity='1';
+                popUpDiv.style.visibility='visible';
                 popUpBtn.innerHTML=popDownIcon;
-                
-        
+
             }
         })
         
