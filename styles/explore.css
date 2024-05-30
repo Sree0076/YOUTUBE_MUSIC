@@ -185,7 +185,7 @@ ul li {
 .scrollcontents{
     background-color: black; 
     margin-top: 65px;
-    height: 200vh;
+    height: 400vh;
 }
 
 
@@ -220,7 +220,7 @@ h2{
     font-size: 150%; /*1.5em*/
    
 }
-.newalbums-singles{
+.newalbums-singles,.new-music-videos{
     margin-left: 9%;
 }
 .slider-container {
@@ -304,13 +304,14 @@ h2{
     font-size: 0.8em; /* Adjust the font size as needed */
     /* white-space: nowrap; */
   }
-  .newalbums-singles-slider::-webkit-scrollbar, .moods-genres-container::-webkit-scrollbar{
+  .newalbums-singles-slider::-webkit-scrollbar, .moods-genres-container::-webkit-scrollbar, .grid-container::-webkit-scrollbar,.trending-container::-webkit-scrollbar{
     background-color: black; 
    
   }
-  .newalbums-singles-slider::-webkit-scrollbar-thumb , .moods-genres-container::-webkit-scrollbar-thumb{
+  .newalbums-singles-slider::-webkit-scrollbar-thumb , .moods-genres-container::-webkit-scrollbar-thumb,.grid-container::-webkit-scrollbar-thumb,.trending-container::-webkit-scrollbar-thumb{
     background-color: rgb(136, 136, 136); 
-    
+    width: 8px;
+    height: 2%;
     
   }
   .moods-genres{
@@ -345,10 +346,176 @@ h2{
 .card {
     width: 150px;
     height: 90%;
-    border-left: 5px solid #7d1d1d;
+   
     padding: 10%;
     color: white;
     font-weight: bolder;
     font-size: 90%;
     background-color: rgb(43, 43, 43);
+}
+
+
+.popular-episodes{
+    margin-left: 9%;
+    margin-right: 10%;
+}
+.grid-container{
+    margin-left: 9%;
+    margin-right: 10%;
+    max-height: 500px; /* Adjust height as needed */
+    overflow-y: hidden; /* Change from 'auto' to 'hidden' */
+    overflow-x: auto; /* Add overflow-x for horizontal scrollbar if needed */
+    white-space: nowrap;
+}
+.popular-episodes-lists{
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(3, 1fr); /* Example: 4 rows */
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    list-style: none;
+    white-space: nowrap;
+     margin-bottom: 3%;
+    width: 150%;
+    margin-left: -4%;
+    gap: 10px;
+}
+.card-episodes{
+    width: 350px;
+    background-color: aliceblue;
+}
+.trending-container{
+    margin-top: 5%;
+    margin-left: 9%;
+    margin-right: 10%;
+    max-height: 500px; /* Adjust height as needed */
+    overflow-y: hidden; /* Change from 'auto' to 'hidden' */
+    overflow-x: auto; /* Add overflow-x for horizontal scrollbar if needed */
+    white-space: nowrap;
+   
+}
+.table-grid-container {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(3, 1fr); /* Example: 4 rows */
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    white-space: nowrap;
+     margin-bottom: 3%;
+     width: 330%;
+    margin-left:9%;
+    gap: 10px;
+  }
+  .song {
+   
+    padding: 10px;
+    /* text-align:center; */
+    display: flex;
+    
+  }
+  .song img {
+    max-width: 10%;
+    height: auto;
+  }
+  .serial-number {
+    margin-left: 8%;
+    margin-right: 8%;
+    /* Push the serial number to the right */
+  }
+.detailsTable{
+    line-height: .5px;
+   margin-top: 2%; 
+    white-space: wrap; /* Prevent text from wrapping */
+    font-size: 0.8em;
+}
+/* .newalbums-singles-slider img{
+    width: 300px;
+} */
+.newimage-container img{
+    width: 280px;
+    height: 150px;
+}
+
+
+
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .expand {
+        width: 200px;
+    }
+
+    .newreleasebutton {
+        padding: 10px;
+    }
+
+    .navbarbutton .home {
+        font-size: 14px;
+    }
+
+    .table-grid-container {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .table-container {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .table-container img {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .expand {
+        width: 150px;
+    }
+
+    .toggleandlogo {
+        justify-content: space-between;
+    }
+
+    .logowithmusic {
+        display: none;
+    }
+
+    .navbarbutton .home {
+        font-size: 12px;
+    }
+
+    .table-container img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .newreleasebutton {
+        padding: 5px;
+    }
+
+    .moods-genres-lists .category .card {
+        width: 100px;
+        height: 70px;
+    }
+
+    .popular-episodes-lists li {
+        width: 150px;
+    }
+
+    .scrollcontents {
+        padding: 10px;
+    }
+}
+@media (max-width: 992px) {
+    .newrelease {
+        flex-direction: column;
+    }
+
+    .newrelease .col-3 {
+        width: 100%;
+    
+        margin: 0 0px 10px 0px;
+    }
 }
