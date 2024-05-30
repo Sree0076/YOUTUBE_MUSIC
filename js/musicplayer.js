@@ -37,14 +37,21 @@ const videoController=document.getElementById('videoController');
 let newSongId;
 const songLists = document.querySelectorAll('.songList');
 
+// navbars code below
 
+const hamBurger = document.querySelector(".toggle-btn");
+hamBurger.addEventListener("click", function () {
+    document.querySelector("#sidebar").classList.toggle("expand");
+});
+
+// navbars code above
 
 async function fetchMusicData(songId) {
     let url = `https://youtube-music-api3.p.rapidapi.com/v2/next?id=${songId}`;
     const options = {
         method: 'GET',
         headers: {
-            'x-rapidapi-key': '33c431b604msh6e6d5181f112eeep19ae7cjsnf5c1fdd3ef0b',
+            'x-rapidapi-key': '520a5da3f0mshe5dda608862ad28p170020jsne02fd8099741',
             'x-rapidapi-host': 'youtube-music-api3.p.rapidapi.com'
         }
     };
