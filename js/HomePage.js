@@ -9,7 +9,7 @@ document.addEventListener('scroll', function () {
     var sidebar = document.getElementById('sidebar');
     var rightnav = document.querySelector('.rightnav');
 
-    if (window.scrollY > 50) { // Change this value to adjust when the color change should happen
+    if (window.scrollY > 50) { 
         sidebar.classList.add('scrolled');
         rightnav.classList.add('scrolled');
     } else {
