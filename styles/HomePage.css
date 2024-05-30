@@ -7,12 +7,12 @@
 }
 
 body {
-    background-image: url("../assets/gradient.avif");
+    background-image: url("../assets/black.png");
     background-repeat: no-repeat;
     background-size: cover;
     overflow-x: hidden;
-    background-color: #000000;
-    background-blend-mode: hard-light;
+    /* background-color: #000000;
+    background-blend-mode: hard-light; */
     /* font-family: 'Roboto Mono', monospace; */
     font-family: 'Roboto', sans-serif;
 }
@@ -199,10 +199,10 @@ p {
 
 /* Quick Picks */
 
-.quick-section .main-profile {
+.quick-section .main-profile
+{
     padding: 0px 99px 0px 70px;
 }
-
 .main {
     min-height: 100vh;
     width: 100%;
@@ -388,7 +388,7 @@ ul li {
 .slider-container {
     overflow-x: hidden;
     white-space: nowrap;
-    margin-left: 80px;
+    margin-left: 70px;
     margin-right: 100px;
     transition: overflow 0.3s ease-in-out;
 }
@@ -420,11 +420,18 @@ ul li {
 }
 
 .slider-container::-webkit-scrollbar {
-    background-color: black;
+    background-color: rgba(6, 6, 6, 0);
+   height: 10px;
+
 }
 
+
 .slider-container::-webkit-scrollbar-thumb {
-    background-color: rgb(136, 136, 136);
+    background-color: #2f2d2d;
+     border-radius: 8px;
+    /* Makes the thumb curved */
+    border: 2px solid rgb(6, 6, 6);
+    /* Matches the track background color */
 }
 
 /* Style the parent container for image and details */
@@ -462,12 +469,12 @@ ul li {
     cursor: default;
 }
 
-.image-container:hover i {
+.image-container:hover   i {
     visibility: visible;
-
+    
 }
-
-.image-container i:hover {
+.image-container i:hover
+{
     cursor: pointer;
     transform: translate(-50%, -50%) scale(1.5);
 }
@@ -491,18 +498,19 @@ ul li {
     color: #fff;
 }
 
-.quick-section .main-profile {
-    margin-left: 70;
+.quick-section .main-profile
+{
+    margin-left:70 ;
 }
-
 /* Style the moods and genres container */
 .moods-genres-container {
     height: 270px;
     overflow-y: hidden;
-    overflow-x: auto;
+    overflow-x: hidden;
     white-space: nowrap;
     margin-left: 5%;
     margin-right: 7%;
+    transition: overflow 0.3s ease-in-out;
 }
 
 .moods-genres-lists {
@@ -520,6 +528,7 @@ ul li {
 
 .category {
     display: inline-block;
+    
 }
 
 .card {
@@ -527,22 +536,93 @@ ul li {
     /* Increased width */
     height: 50px;
     padding: 5%;
+    border: none;
 
     font-weight: bolder;
     font-size: 90%;
     background-color: rgba(255, 255, 255, 0);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+        white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
 }
 
 .moods-genres-lists img {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     margin-top: -10px;
     margin-right: 20px;
 }
 
+.moods-genres-container::-webkit-scrollbar {
+    background-color: rgba(6, 6, 6, 0);
+    height: 10px;
+
+}
+
+
+.moods-genres-container::-webkit-scrollbar-thumb {
+    background-color: #2f2d2d;
+    border-radius: 8px;
+    /* Makes the thumb curved */
+    border: 2px solid rgb(6, 6, 6);
+    /* Matches the track background color */
+}
+.moods-genres-container:hover {
+    overflow-x: auto;
+
+}
+.quick-picks-title {
+    display: flex;
+    position: relative;
+}
+
+.quick-picks-title p {
+    color: #f9f8f8;
+    margin-top: -20px;
+    margin-left: 5px;
+}
+
+.quick-picks-author {
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 60px;
+}
+
+.quick-picks-title i {
+    position: absolute;
+    top: 40%;
+    left: 5%;
+    z-index: 100;
+    color: #fff;
+    transform: translate(-50%, -50%) scale(1);
+    visibility: hidden;
+    transition: transform 0.3s ease;
+}
+
+
+.quick-picks-title:hover img {
+    filter: brightness(50%);
+    cursor: default;
+}
+
+.quick-picks-title:hover i {
+    visibility: visible;
+
+}
+
+.quick-picks-title:hover p {
+
+    color: #fcf9f945
+}
+
+.quick-picks-title i:hover {
+    cursor: pointer;
+    transform: translate(-50%, -50%) scale(1.5);
+}
+
+h2 {
+    font-weight: bolder;
+}
 /* Media Queries */
 @media only screen and (max-width: 1200px) {
     .rightnav {
@@ -557,18 +637,17 @@ ul li {
     .button-section {
         width: 60%;
     }
-
-    .profile-text {
+    .profile-text
+    {
         margin-left: 20px;
     }
-
-    .slider-container {
+    .slider-container
+    {
         margin-left: 80px;
     }
-
-    .quick-section .main-profile {
-        padding: 0px 60px 0px 60px;
-    }
+        .quick-section .main-profile {
+            padding: 0px 60px 0px 60px;
+        }
 
 }
 
@@ -618,14 +697,11 @@ ul li {
         margin-left: 50px;
         margin-right: 50px;
     }
-
-    .quick-section .main-profile {
-        padding: 0px 30px 0px 30px;
-    }
+        .quick-section .main-profile {
+            padding: 0px 30px 0px 30px;
+        }
 }
-
 /* Add this CSS at the end of your existing CSS */
-
 @media screen and (max-width: 768px) {
 
     /* Adjust sidebar width and font sizes for smaller screens */
@@ -641,7 +717,6 @@ ul li {
     .profile-text {
         margin-left: -20px !important;
     }
-
 
     .home {
         font-size: 14px;
@@ -725,7 +800,6 @@ ul li {
 
     .slider-container {
         margin-left: 10px;
-        /* Adjust margin for slider container */
         margin-right: 10px;
         /* Adjust margin for slider container */
     }
@@ -756,56 +830,4 @@ ul li {
     .input-icon i {
         left: 10px;
     }
-
-
-
-}
-
-/* Add this CSS at the end of your existing CSS */
-
-@media screen and (max-width: 768px) {
-    .moods-genres-container {
-        max-height: none;
-        /* Remove max-height */
-        overflow-y: auto;
-        /* Enable vertical scrolling if necessary */
-        overflow-x: hidden;
-        /* Disable horizontal scrolling */
-        white-space: normal;
-        /* Allow text wrapping */
-        margin: 0;
-        /* Reset margins */
-    }
-
-    .moods-genres-lists {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        /* Adjust column width */
-        gap: 5px;
-        /* Reduce gap between items */
-        margin-bottom: 0;
-        /* Remove bottom margin */
-    }
-
-    .card {
-        width: 120px;
-        /* Adjust card width */
-        padding: 8px;
-        /* Adjust padding */
-    }
-}
-
-.quick-picks-title {
-    display: flex;
-}
-
-.quick-picks-title p {
-    color: #f9f8f8;
-    margin-top: -20px;
-    margin-left: 5px;
-}
-
-.quick-picks-author {
-    position: absolute;
-    margin-top: 20px;
-    margin-left: 50px;
 }
