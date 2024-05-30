@@ -116,6 +116,10 @@ window.onload = function() {
 
                 for(let i=0;i<50;i++){
                 const newSongId=data.nextItems[i].videoId;    
+                const newSongImage=data.nextItems[i].thumbnail;
+                const newSongName=data.nextItems[i].title;
+                const newSongOtherDetails=data.nextItems[i].author+" "+circleIcon+" "+data.nextItems[i].duration;
+                const newClickCounter=i;
                 const newListItem = document.createElement("li");
                 newListItem.id="newListItem";
                 newListItem.classList.add("position-relative");
@@ -168,8 +172,48 @@ window.onload = function() {
                     playPauseOverlay.style.opacity=''
                 })
                 newListItem.addEventListener('click',()=>{
-                    localStorage.setItem('songId', newSongId);
-                    location.reload(true);
+                    // localStorage.setItem('songId', newSongId);
+                    // location.reload(true);
+                    nextClickCounter=newClickCounter;
+                    playerSongImage.src=newSongImage;
+                    songName.innerHTML=newSongName;
+                    songOtherDetails.innerHTML=newSongOtherDetails;
+                    popUpImage.src=newSongImage;
+                    async function fetchVideo(newSongId) {
+                        let url = `https://yt-api.p.rapidapi.com/dl?id=${newSongId}`;
+                        const options = {
+                            method: 'GET',
+                            headers: {
+                                'x-rapidapi-key': '7a6694efccmshbf3595fdaf4c2fep1ac0e1jsn8225601fbcde',
+                                'x-rapidapi-host': 'yt-api.p.rapidapi.com'
+                            }
+                        };
+                    
+                        try {
+                            const response = await fetch(url, options);
+                            const result = await response.json();
+                            // console.log(result);
+                            return result;
+                        } catch (error) {
+                            console.error(error);
+                            return null;
+                        }
+                    }
+            
+                    fetchVideo(newSongId)
+                    .then(data => {
+                        if (data) {
+                            // console.log(data);
+                            // console.log(newSongId);
+                            videoUrl = data.formats[0].url;
+                            // console.log(videoUrl);
+                            videoPlayer.src=videoUrl;
+                            videoPlayer.parentElement.load();
+                            // playPauseBtn.style.color='red';
+                        } else {
+                            console.log("Failed to fetch music data.");
+                        }
+                    });
                 })
                 }
 
