@@ -29,8 +29,8 @@ async function fetchMusicData(search) {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': 'd87ec7dc89msh63d1fdc07b1d8afp14c0b0jsn4f221ff84310',
-            'X-RapidAPI-Host': 'youtube-music-api3.p.rapidapi.com'
+            'x-rapidapi-key': '33c431b604msh6e6d5181f112eeep19ae7cjsnf5c1fdd3ef0b',
+'x-rapidapi-host': 'youtube-music-api3.p.rapidapi.com'
         }
     };
 
