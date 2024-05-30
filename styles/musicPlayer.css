@@ -1,0 +1,224 @@
+
+
+#musicPlayer{
+    /* border-color: blue;
+    border-style: solid; */
+    height: auto;
+    z-index: 100;
+    position: absolute;
+    top: 85vh;
+    background-color: #212121;  
+}
+
+#playPause{
+    /* border-color: blue;
+    border-style: solid; */
+    width: auto;
+}
+
+
+
+.playPauseButton{
+   
+  color: white; 
+  border-radius: 50%; 
+  cursor: pointer;
+  
+  /* border-color: blue;
+    border-style: solid; */
+    
+}
+
+
+
+#playPauseBtn{
+  font-size: 200%;
+}  
+
+input[type='range'] {
+  overflow: hidden;
+  width: 100%;
+  -webkit-appearance: none;
+  background-color: #fff;
+  cursor: pointer;
+  /* border-color: blue;
+  border-style: solid; */
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #ff0000;
+  cursor: pointer;
+  -webkit-box-shadow: -100vw 0px 0 100vw #ff0000;
+          box-shadow: -100vw 0px 0 100vw #ff0000;
+}
+
+#contentDiv{
+  /* border-color: blue;
+  border-style: solid; */
+}
+
+#selectedSongTime{
+  /* border-color: blue;
+  border-style: solid; */
+  width: auto;
+  color: white;
+}
+
+#playerSongImage{
+  height: 40px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+#songDetailsDiv{
+  /* border-color: blue;
+  border-style: solid; */
+  color: white;
+}
+
+.fa-xs {
+  font-size: 0.2rem;
+}
+
+#playerEndBtns{
+  /* border-color: blue;
+  border-style: solid; */
+  color: white;
+  width: auto;
+}
+
+#popUpDiv{
+  position: absolute;
+  z-index: 99;
+  /* border-color: blue;
+  border-style: solid; */
+  width: 100vw;
+  height: 100vh;
+  background-color:black;
+  /* display: none; */
+  visibility: hidden;
+  /* set opacity to 0 for program to work properly*/
+}
+
+#playerEndBtns button{
+  font-size: 120%;
+}
+
+#popUpImage{
+  width: 30vw;
+}
+
+.song-video-Div{
+  /* border-color: blue;
+  border-style: solid; */
+  margin-left: 290px;
+  margin-top: 80px;
+  
+}
+
+
+#listDiv{
+  /* border-color: blue;
+  border-style: solid; */
+  margin-top: 80px;
+  height: 350px;
+  width: 400px;
+  overflow-y: auto;
+  /* overflow-x: hidden;
+  text-overflow: ellipsis; */
+}
+
+/* #songList label{
+  width: 50px;
+  overflow-x:hidden;
+} */
+
+#listDiv::-webkit-scrollbar{
+  width: 0;
+}
+
+#songList{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+label{
+  width: 300px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+#musicPlayer label{
+  max-width: 300px;
+  width: auto;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+#newListItem{
+  border-bottom: 1px solid white;
+}
+
+#playPause button{
+  background-color: transparent !important;
+  border-style: none !important;
+}
+
+#playerEndBtns button{
+  background-color: transparent !important;
+  border-style: none !important;
+}
+
+#songDetailsDiv button{
+  background-color: transparent !important;
+  border-style: none;
+  border-radius: 50%;
+}
+
+#songDetailsDiv button:hover{
+  background-color: grey !important;
+  
+}
+
+#playPauseOverlay{
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  bottom: 17px;
+  left: 32px;
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  opacity: 0;
+}
+
+.nav{
+  justify-content: center;
+  padding-bottom: 10px;
+}
+
+/* #songTab{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+} */
+
+.nav-link{
+  color: white !important;
+  background-color: #212121 !important;
+}
+
+.nav-link.active{
+  background-color: grey !important;
+}
+
+.nav-link button{
+  background-color: transparent !important;
+}
