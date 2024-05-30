@@ -100,7 +100,7 @@ input[type='range']::-webkit-slider-thumb {
   height: 100vh;
   background-color:black;
   /* display: none; */
-  opacity: 0;
+  visibility: hidden;
   /* set opacity to 0 for program to work properly*/
 }
 
@@ -204,8 +204,21 @@ label{
   padding-bottom: 10px;
 }
 
-#songTab{
+/* #songTab{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+} */
+
+.nav-link{
+  color: white !important;
+  background-color: #212121 !important;
+}
+
+.nav-link.active{
+  background-color: grey !important;
+}
+
+.nav-link button{
+  background-color: transparent !important;
 }
