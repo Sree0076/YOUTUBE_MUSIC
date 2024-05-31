@@ -33,7 +33,7 @@
                 <button class="btn btn-dark playPauseButton" id="playPauseBtn"><i class="fas fa-play"></i></button>
 
                 <button class="btn btn-dark playPauseButton me-3" id="nextSongBtn"><i class="fas fa-step-forward"></i></button>
-
+                <button id="fullscreenButton" class="control-button">⛶</button>
                 <p id="selectedSongTime" class="mt-3"></p>
 
             
@@ -50,8 +50,12 @@
                 <button class="btn btn-dark playPauseButton"><i class="fas fa-ellipsis-v"></i></button>
             </div>
             <div class="d-flex flex-row flex-wrap align-items-center justify-content-center m-0 p-0" id="playerEndBtns">
-                <button class="btn btn-dark playPauseButton" id="volumeBtn"><i class="fas fa-volume-up"></i></button>
-                <button class="btn btn-dark playPauseButton"><i class="fas fa-redo"></i></button>
+                <button id="muteButton" class="control-button">
+                               <span id="muteIcon"><i class="fa-solid fa-volume-xmark"></i></span>
+                               <span id="unmuteIcon" style="display: none;"><i class="fa-solid fa-volume-high"></i></span>
+                           </button>
+                <input type="range" id="volumeControl" class="volume-control" min="0" max="1" step="0.1" value="1">
+                <button class="btn btn-dark playPauseButton" id="loop-button"><i class="fas fa-redo"></i></button>
                 <button class="btn btn-dark playPauseButton"><i class="fas fa-random"></i></button>
                 <button class="btn btn-dark playPauseButton" id="popUpBtn"><i class="fas fa-caret-up"></i></button>
             </div>
@@ -64,7 +68,7 @@
                     <button class="nav-link active" data-bs-toggle="pill" href="#songTab">Song</button>
                 </li>
                 <li class="nav-item">
-                    <button class="nav-link" data-bs-toggle="pill" href="#videoTab">Video</button>
+                    <button class="nav-link" data-bs-toggle="pill" id="video-tab" href="#videoTab">Video</button>
                 </li>
             </ul>
             <div class="tab-content">
@@ -96,7 +100,7 @@
             <div class="tab-content">
                 <div id="upNextDiv" class="tab-pane fade show active p-0">
                     <div id="listDiv">
-                        <ul class="songList">
+                        <ul id="songList" class="songList">
                             
                         </ul>
                     </div>
@@ -108,7 +112,7 @@
                 </div>
                 <div id="relatedDiv" class="tab-pane fade p-0">
                     <div id="listDiv">
-                        <ul class="songList">
+                        <ul class="songList" id="related">
                             
                         </ul>
                     </div>
@@ -128,13 +132,13 @@
                         <i class="bi bi-list"></i>
                     </button>
                     <span id="youtubeMusicLogo">
-                        <img class="logowithmusic" src="../assets/on_platform_logo_dark.svg" alt="" />
+                        <a href="./HomePage.html"><img class="logowithmusic" src="../assets/on_platform_logo_dark.svg" alt="" /></a>
                     </span>
                 </div>
                 <div class="text-center">
                     <div class="btn container w-85 mt-3 d-flex navbarbutton">
                         <div class="">
-                            <i class="bi bi-house-door text-white fs-5 homeicon sideNavIcons"></i>
+                            <a href="./HomePage.html"><i class="bi bi-house-door text-white fs-5 homeicon sideNavIcons"></i></a>
                             <span class="text-white home">Home</span>
                         </div>
                     </div>
@@ -142,7 +146,7 @@
                 <div class="text-center">
                     <div class="btn container w-85 d-flex navbarbutton">
                         <div class="">
-                            <i class="bi bi-browser-safari text-white fs-5 homeicon sideNavIcons"></i>
+                            <a href="#"><i class="bi bi-browser-safari text-white fs-5 homeicon sideNavIcons"></i></a>
                             <span class="text-white home">Explore</span>
                         </div>
                     </div>
@@ -150,7 +154,7 @@
                 <div class="text-center">
                     <div class="btn container w-85 d-flex navbarbutton">
                         <div class="">
-                            <i class="bi bi-music-note-list text-white fs-5 homeicon sideNavIcons"></i>
+                            <a href="#"><i class="bi bi-music-note-list text-white fs-5 homeicon sideNavIcons"></i></a>
                             <span class="text-white home">Library</span>
                         </div>
                     </div>
@@ -158,7 +162,7 @@
                 <div class="text-center">
                     <div class="btn container w-85 d-flex navbarbutton">
                         <div class="">
-                            <i class="bi bi-play-circle text-white fs-5 homeicon sideNavIcons"></i>
+                            <a href="#"><i class="bi bi-play-circle text-white fs-5 homeicon sideNavIcons"></i></a>
                             <span class="text-white home">Upgrade</span>
                         </div>
                     </div>
