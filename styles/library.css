@@ -3,9 +3,9 @@ body {
     /* background-color: black; */
 }
 
-.w-85{
+/* .w-85{
     width: 90%;
-}
+} */
 
 .toggleandlogo {
     align-items: center;
@@ -185,6 +185,7 @@ ul li {
     background-color: black;
     margin-top: 65px;
     height: 150vh;
+    width: 100%;
 }
 
 
@@ -235,6 +236,8 @@ ul li {
 .dropdown-container {
     position: absolute;
     left: 80%;
+    display: inline-block;
+    width:20%;
    
 }
 
