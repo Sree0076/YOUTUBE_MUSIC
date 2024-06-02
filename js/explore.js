@@ -46,6 +46,17 @@ document.addEventListener('DOMContentLoaded', () => {
           const image = document.createElement('img');
           image.src = song.thumbnail; 
           imageContainer.appendChild(image);
+          const playIcon = document.createElement('i');
+          playIcon.classList.add('bi', 'bi-caret-right-fill', 'play-icon');
+          imageContainer.appendChild(playIcon);
+          playIcon.addEventListener('click', () => {
+            const videoId = song.video_id;
+            localStorage.setItem('playsong', videoId)
+            window.location.href = '../pages/musicPlayer.html';
+            console.log('Clicked video ID:', videoId);
+            // Add more logic here to handle the click event if needed
+          });
+          
           contentContainer.appendChild(imageContainer);
           const detailsContainer = document.createElement('div');
           detailsContainer.classList.add('details-container');
@@ -83,6 +94,24 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+
+document.addEventListener("DOMContentLoaded", function () {
+  const prevButton = document.getElementById('prevButton');
+  const nextButton = document.getElementById('nextButton');
+  const carouselWrapper = document.querySelector('.slider-container');
+
+  prevButton.addEventListener('click', function () {
+      // Move carousel to the left
+      carouselWrapper.scrollLeft -= carouselWrapper.offsetWidth;
+  });
+
+  nextButton.addEventListener('click', function () {
+      // Move carousel to the right
+      carouselWrapper.scrollLeft += carouselWrapper.offsetWidth;
+  });
+});
+
+
 const categories = [
 'Hindi', 'Workout', 'Monsoon', 'Party', 'Romance', 'Sleep', 'Feel Good', 'Malayalam',
 'Bollywood', 'Cardio', 'Rainy', 'Celebration', 'Love', 'Nap', 'Happy', 'Study',
@@ -117,13 +146,13 @@ document.querySelectorAll('.card').forEach(function(card) {
     card.style.borderLeft = '5px solid ' + randomColor;
 });
 
-document.addEventListener('DOMContentLoaded', async () => {
-  const url = 'https://youtube-data8.p.rapidapi.com/playlist/videos/?id=PLcirGkCPmbmFeQ1sm4wFciF03D_EroIfr&hl=en&gl=US';
-  const options = {
-    method: 'GET',
+ document.addEventListener('DOMContentLoaded', async () => {
+   const url = 'https://youtube-data8.p.rapidapi.com/playlist/videos/?id=PLcirGkCPmbmFeQ1sm4wFciF03D_EroIfr&hl=en&gl=US';
+   const options = {
+     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': '1a2851fc19mshd76c482ea687c10p1f3369jsn6763f26dbe97',
-      'X-RapidAPI-Host': 'youtube-data8.p.rapidapi.com'
+       'X-RapidAPI-Key': '1a2851fc19mshd76c482ea687c10p1f3369jsn6763f26dbe97',
+       'X-RapidAPI-Host': 'youtube-data8.p.rapidapi.com'
     }
   };
 
@@ -182,21 +211,26 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
  async function renderSongs(songs) {
-  // const songs = await populateSongs(search);
+  
    const container = document.getElementById('table-grid-container');
-  container.innerHTML = ''; // Clear previous content
-  let serialNumber = 1; // Initialize serial number
- 
+  container.innerHTML = ''; 
+  let serialNumber = 1; 
   songs.forEach(song => {
     const songElement = document.createElement('div');
     songElement.classList.add('song');
+  
+
     
     // Image
     const img = document.createElement('img');
-    img.src = song.thumbnail; // Assuming 'image' is the key for image URL
-    img.alt = song.title; // Assuming 'title' is the key for song title
+    img.src = song.thumbnail; 
+    img.alt = song.title; 
+   
+    const playIcon = document.createElement('i');
+    playIcon.classList.add('bi', 'bi-caret-right-fill', 'playbutton-icon');
+    songElement.appendChild(playIcon);
     
-    // Number (You can replace 'number' with the actual number property from the data)
+ 
     const number = document.createElement('div');
     number.classList.add('serial-number');
     number.textContent = serialNumber++;// Assuming 'number' is the key for song number
@@ -244,20 +278,31 @@ document.addEventListener('DOMContentLoaded', () => {
           const imageContainer = document.createElement('div');
           imageContainer.classList.add('newimage-container');
           const image = document.createElement('img');
-          image.src = song.thumbnail; // Assuming thumbnail is the property containing the image URL
+          image.src = song.thumbnail; 
+          const playIcon = document.createElement('i');
+          playIcon.classList.add('bi', 'bi-caret-right-fill', 'play-newsongsicon');
+        
+          playIcon.addEventListener('click', () => {
+            const videoId = song.video_id;
+            localStorage.setItem('playsong', videoId)
+            window.location.href = '../pages/musicPlayer.html';
+            console.log('Clicked video ID:', videoId);
+            // Add more logic here to handle the click event if needed
+          });
           imageContainer.appendChild(image);
+          imageContainer.appendChild(playIcon);
           contentContainer.appendChild(imageContainer);
           // Details container
           const detailsContainer = document.createElement('div');
           detailsContainer.classList.add('newdetails-container');
           
           const title = document.createElement('p');
-          title.textContent = song.title; // Assuming title is the property containing song name
+          title.textContent = song.title; 
           title.classList.add('title');
           // title.style.whiteSpace = 'break-spaces';
           title.style.overflow = 'hidden';
           const details = document.createElement('p');
-          details.textContent = song.details; // Assuming details is the property containing song details
+          details.textContent = song.details;
           details.classList.add('details');
           details.style.whiteSpace = 'break-spaces'; 
           details.style.overflow = 'hidden';
@@ -275,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
           contentContainer.appendChild(detailsContainer);
 
           newlistItem.appendChild(contentContainer);
-          newvideosElement.appendChild(newlistItem); // Appending the song element to items
+          newvideosElement.appendChild(newlistItem); 
           
         });
       } else {

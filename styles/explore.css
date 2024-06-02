@@ -198,6 +198,7 @@ ul li {
 .newrelease{
     width: 82%;
     margin-left: 9%;
+   
 }
 
 .newreleasebutton{
@@ -217,6 +218,21 @@ h2{
 .newalbums-singles,.new-music-videos{
     margin-left: 9%;
 }
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+}
+
+.header-container h2 {
+    margin: 0;
+}
+
+
+
+
+
 
 .slider-container {
     margin-left: 9%;
@@ -252,6 +268,7 @@ h2{
     margin-right: 10px;
     height: 250px;
     margin-bottom: -20px;
+    position: relative;
   }
   
   .content-container {
@@ -261,6 +278,7 @@ h2{
   .image-container {
     width: 100%;
     margin-top: 2%;
+    position: relative;
   }
    
   .image-container img {
@@ -270,7 +288,26 @@ h2{
     border: none;
     border-radius: 5px;
     display: block;
+    transition: opacity 0.3s ease;
   } 
+  
+.image-container:hover img {
+    opacity: 0.7;
+  }
+  .image-container .play-icon {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: white;
+    font-size: 24px;
+    background-color: rgba(74, 74, 74, 0.5);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .image-container:hover .play-icon {
+    opacity: 1;
+  }
   
   .details-container {
     text-align: center;
@@ -335,6 +372,10 @@ h2{
     font-weight: bolder;
     font-size: 90%;
     background-color: rgb(43, 43, 43);
+    transition: opacity 0.3s ease;
+}
+.card:hover{
+    opacity: 0.7;
 }
 
 .popular-episodes {
@@ -363,7 +404,7 @@ h2{
     grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
     list-style: none;
     width: 3000px;
-    gap: 10px;
+    gap: 10px; 
     padding: 0;
 }
 
@@ -380,6 +421,12 @@ h2{
     display: flex;
 }
 
+.card-episodes:hover{
+    opacity: 0.3;
+
+}
+
+  
 .card-episodes img {
     width: 150px;
     height: 80px;
@@ -410,8 +457,8 @@ h2{
     white-space: wrap;
 }
 .trending-container{
-    margin-top: 5%;
-    margin-left: 9%;
+    /* margin-top: 5%; */
+    margin-left: 5%;
     margin-right: 10%;
     max-height: 500px; 
     overflow-y: hidden; 
@@ -449,7 +496,19 @@ h2{
     margin-left: 8%;
     margin-right: 8%;
   }
-
+  .playbutton-icon{
+    position: relative;
+    left: -100%;
+    top: 5%;
+    opacity: 0;
+  }
+  .song img:hover{
+    opacity: 0.5;
+    background-color: rgb(64, 64, 64,0.5);
+  }
+.playbutton-icon:hover{
+    opacity: 0.9;
+}
 .detailsTable{
     line-height: .5px;
    margin-top: 2%; 
@@ -460,6 +519,7 @@ h2{
 .newimage-container img{
     width: 280px;
     height: 150px;
+    opacity: 1;
 }
 
 #newvideos{
@@ -482,6 +542,47 @@ background-color: black;
 .new-slider:hover{
     overflow-x: auto;
 }
+.play-newsongsicon{
+    position: relative;
+    left: -50%;
+    opacity:1;
+   font-size: 50px;
+}
+
+
+.newimage-container:hover{
+    opacity: 0.5;
+}
+.more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    cursor: pointer;
+}
+
+.more p {
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 15px;
+    border-radius: 30px;
+    margin-top: 15px;
+}
+
+.more p:hover {
+    color: #fff;
+    border-color: #fff;
+}
+
+.more i {
+    margin-left: 15px;
+}
+
+.hover:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
