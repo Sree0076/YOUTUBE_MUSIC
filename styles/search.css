@@ -1,0 +1,70 @@
+body{
+    background-color: black;
+}
+.result {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Style for image container */
+.searchimage-container {
+    position: relative;
+    flex-shrink: 0; 
+    margin-right: 10px; 
+}
+
+/* Style for image */
+.searchimage {
+    width: 90%; 
+    height: auto; 
+    transition: opacity 0.3s ease; 
+}
+.searchcontainer{
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 5%;
+}
+/* Style for play button */
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 40px;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+}
+
+/* Style for details container */
+.details-container {
+    flex-grow: 1; /* Allow details container to grow */
+}
+
+/* Style for title */
+.details-container h6 {
+    margin: 0;
+    color: #333; /* Grey color for title */
+    font-size: 16px;
+}
+
+/* Style for duration */
+.details-container p {
+    margin: 5px 0;
+    color: #666; /* Darker grey color for duration */
+    font-size: 14px;
+}
+
+/* Style for horizontal rule */
+hr {
+    border: none;
+    border-top: 1px solid #ccc; /* Grey color for horizontal rule */
+    margin: 20px 0;
+}
