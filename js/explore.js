@@ -3,6 +3,29 @@ const hamBurger = document.querySelector(".toggle-btn");
     document.querySelector("#sidebar").classList.toggle("expand");
  });
 
+ document.addEventListener("DOMContentLoaded", function() {
+  const searchInput = document.getElementById("searchInput");
+
+  function performSearch() {
+      const searchTerm = searchInput.value;
+      if (searchTerm) {
+          localStorage.setItem('searchTerm', searchTerm);
+          window.location.href = '../pages/search.html';
+      }
+  }
+
+  // document.getElementById("searchButton").addEventListener("click", performSearch);
+
+  searchInput.addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+          performSearch();
+      }
+  });
+});
+
+
+
+
 async function populateSongs(search) {
   let url = 'https://youtube-music-api3.p.rapidapi.com/search?';
   if (search) {
@@ -11,7 +34,7 @@ async function populateSongs(search) {
   const options = {
     method: 'GET',
     headers: {
-      'x-rapidapi-key': '520a5da3f0mshe5dda608862ad28p170020jsne02fd8099741',
+      'x-rapidapi-key': 'ea1b194e9dmsh6b3833219aa01bap193a96jsn85817deae478',
       'x-rapidapi-host': 'youtube-music-api3.p.rapidapi.com'
     }
   };
@@ -147,13 +170,13 @@ document.querySelectorAll('.card').forEach(function(card) {
 });
 
  document.addEventListener('DOMContentLoaded', async () => {
-   const url = 'https://youtube-data8.p.rapidapi.com/playlist/videos/?id=PLcirGkCPmbmFeQ1sm4wFciF03D_EroIfr&hl=en&gl=US';
+    const url = 'https://youtube-data8.p.rapidapi.com/playlist/videos/?id=PLcirGkCPmbmFeQ1sm4wFciF03D_EroIfr&hl=en&gl=US';
    const options = {
-     method: 'GET',
-    headers: {
-       'X-RapidAPI-Key': '1a2851fc19mshd76c482ea687c10p1f3369jsn6763f26dbe97',
-       'X-RapidAPI-Host': 'youtube-data8.p.rapidapi.com'
-    }
+      method: 'GET',
+     headers: {
+        'X-RapidAPI-Key': '1a2851fc19mshd76c482ea687c10p1f3369jsn6763f26dbe97',
+        'X-RapidAPI-Host': 'youtube-data8.p.rapidapi.com'
+     }
   };
 
   try {
@@ -176,6 +199,10 @@ document.querySelectorAll('.card').forEach(function(card) {
       img.src = item.thumbnails[0].url; // Use the first thumbnail
       img.alt = item.title;
 
+      const playIcon = document.createElement('i');
+      playIcon.classList.add('bi', 'bi-caret-right-fill', 'playpopular-icon');
+      
+
       const details = document.createElement('div');
       details.className = 'details';
 
@@ -193,6 +220,7 @@ document.querySelectorAll('.card').forEach(function(card) {
       details.appendChild(title);
       details.appendChild(description);
       card.appendChild(img);
+      card.appendChild(playIcon);
       card.appendChild(details);
       li.appendChild(card);
 

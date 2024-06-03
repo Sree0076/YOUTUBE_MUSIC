@@ -181,7 +181,7 @@ ul li {
 .scrollcontents{
     background-color: black; 
     margin-top: 65px;
-    height: 400vh;
+    /* height: 400vh; */
 }
 
 .sidebarnav {
@@ -382,6 +382,16 @@ h2{
     margin-left: 9%;
     margin-right: 10%;
     margin-top: 9%;
+}
+.playpopular-icon{
+    position: relative;
+    top: 22px;
+    left: -17%;
+    font-size: 30px;
+    opacity: 0;
+}
+.playpopular-icon:hover{
+    opacity: 1;
 }
 
 .grid-container {
