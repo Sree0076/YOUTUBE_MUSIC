@@ -1,224 +1,509 @@
-
-
 #musicPlayer{
-    /* border-color: blue;
-    border-style: solid; */
-    height: auto;
-    z-index: 100;
-    position: absolute;
-    top: 85vh;
-    background-color: #212121;  
+  height: auto;
+  z-index: 100;
+  position: absolute;
+  top: 85vh;
+  background-color: #212121;  
 }
 
 #playPause{
-    /* border-color: blue;
-    border-style: solid; */
-    width: auto;
+  width: auto;
 }
 
-
-
-.playPauseButton{
-   
-  color: white; 
-  border-radius: 50%; 
-  cursor: pointer;
-  
-  /* border-color: blue;
-    border-style: solid; */
-    
+.playPauseButton{  
+color: white; 
+border-radius: 50%; 
+cursor: pointer;    
 }
-
-
 
 #playPauseBtn{
-  font-size: 200%;
+font-size: 200%;
 }  
 
 input[type='range'] {
-  overflow: hidden;
-  width: 100%;
-  -webkit-appearance: none;
-  background-color: #fff;
-  cursor: pointer;
-  /* border-color: blue;
-  border-style: solid; */
+overflow: hidden;
+width: 100%;
+-webkit-appearance: none;
+background-color: #fff;
+cursor: pointer;
 }
 
 input[type='range']::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #ff0000;
-  cursor: pointer;
-  -webkit-box-shadow: -100vw 0px 0 100vw #ff0000;
-          box-shadow: -100vw 0px 0 100vw #ff0000;
-}
-
-#contentDiv{
-  /* border-color: blue;
-  border-style: solid; */
+-webkit-appearance: none;
+width: 5px;
+height: 5px;
+border-radius: 50%;
+background: #ff0000;
+cursor: pointer;
+-webkit-box-shadow: -100vw 0px 0 100vw #ff0000;
+        box-shadow: -100vw 0px 0 100vw #ff0000;
 }
 
 #selectedSongTime{
-  /* border-color: blue;
-  border-style: solid; */
-  width: auto;
-  color: white;
+width: auto;
+color: white;
 }
 
 #playerSongImage{
-  height: 40px;
-  border-radius: 2px;
-  overflow: hidden;
+height: 40px;
+border-radius: 2px;
+overflow: hidden;
 }
 
 #songDetailsDiv{
-  /* border-color: blue;
-  border-style: solid; */
-  color: white;
+color: white;
 }
 
 .fa-xs {
-  font-size: 0.2rem;
+font-size: 0.2rem;
 }
 
 #playerEndBtns{
-  /* border-color: blue;
-  border-style: solid; */
-  color: white;
-  width: auto;
+color: white;
+width: auto;
 }
 
 #popUpDiv{
-  position: absolute;
-  z-index: 99;
-  /* border-color: blue;
-  border-style: solid; */
-  width: 100vw;
-  height: 100vh;
-  background-color:black;
-  /* display: none; */
-  visibility: hidden;
-  /* set opacity to 0 for program to work properly*/
+position: absolute;
+z-index: 98;
+width: 100vw;
+height: 100vh;
+background-color:black;
+visibility: hidden;
 }
 
 #playerEndBtns button{
-  font-size: 120%;
+font-size: 120%;
 }
 
 #popUpImage{
-  width: 30vw;
+width: 30vw;
 }
 
 .song-video-Div{
-  /* border-color: blue;
-  border-style: solid; */
-  margin-left: 290px;
-  margin-top: 80px;
-  
+margin-left: 290px;
+margin-top: 80px;
 }
 
 
 #listDiv{
-  /* border-color: blue;
-  border-style: solid; */
-  margin-top: 80px;
-  height: 350px;
-  width: 400px;
-  overflow-y: auto;
-  /* overflow-x: hidden;
-  text-overflow: ellipsis; */
+height: 350px;
+width: 400px;
+overflow-y: auto;
 }
-
-/* #songList label{
-  width: 50px;
-  overflow-x:hidden;
-} */
 
 #listDiv::-webkit-scrollbar{
-  width: 0;
+width: 0;
 }
 
-#songList{
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.songList{
+list-style: none;
+padding: 0;
+margin: 0;
 }
 
 label{
-  width: 300px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+width: 300px;
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
 }
 
 #musicPlayer label{
-  max-width: 300px;
-  width: auto;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+max-width: 300px;
+width: auto;
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
 }
 
 #newListItem{
-  border-bottom: 1px solid white;
+border-bottom: 1px solid white;
 }
 
 #playPause button{
-  background-color: transparent !important;
-  border-style: none !important;
+background-color: transparent !important;
+border-style: none !important;
 }
 
 #playerEndBtns button{
-  background-color: transparent !important;
-  border-style: none !important;
+background-color: transparent !important;
+border-style: none !important;
 }
 
 #songDetailsDiv button{
-  background-color: transparent !important;
-  border-style: none;
-  border-radius: 50%;
+background-color: transparent !important;
+border-style: none;
+border-radius: 50%;
 }
 
 #songDetailsDiv button:hover{
-  background-color: grey !important;
-  
+background-color: grey !important;
 }
 
 #playPauseOverlay{
-  color: white;
-  font-size: 20px;
-  position: absolute;
-  bottom: 17px;
-  left: 32px;
-  padding: 0;
-  margin: 0;
-  width: 30px;
-  opacity: 0;
+color: white;
+font-size: 20px;
+position: absolute;
+bottom: 17px;
+left: 32px;
+padding: 0;
+margin: 0;
+width: 30px;
+opacity: 0;
 }
 
 .nav{
-  justify-content: center;
-  padding-bottom: 10px;
+justify-content: center;
+padding-bottom: 10px;
 }
 
-/* #songTab{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-} */
-
 .nav-link{
-  color: white !important;
-  background-color: #212121 !important;
+color: white !important;
+background-color: #212121 !important;
 }
 
 .nav-link.active{
-  background-color: grey !important;
+background-color: grey !important;
 }
 
-.nav-link button{
-  background-color: transparent !important;
+#upNext-lyrics-related-Div{
+margin-top: 80px;
+height: 350px;
+width: 400px;
+}
+
+#upNext-lyrics-related-Div .nav-link{
+color: white !important;
+background-color: black !important;
+}
+
+#upNext-lyrics-related-Div .nav-pills .nav-link {
+border-radius: 0; 
+}
+
+.song-video-Div li{
+background-color: #212121 !important;
+border-radius: 50px !important;
+}
+
+.song-video-Div button{
+border-radius: 50px !important;
+}
+
+.song-video-Div ul{
+width: fit-content !important;
+height: fit-content !important;
+border-radius: 50px !important;
+padding-bottom: 0;
+background-color: #212121;
+margin-left: 110px;
+margin-bottom: 10px;
+}
+
+#videoController{
+margin-left: -85px;
+}
+
+body{
+  background-color: black !important;
+}
+
+/* navbars code below */
+
+/* Primary Nav */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #030303;
+  z-index: 99;
+}
+
+.flex-container {
+  cursor: pointer;
+  padding: 0 15px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.flex-container img {
+  display: block;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo p {
+  font-size: 25px;
+  font-weight: 600;
+  margin-left: 8px;
+}
+
+.primary-nav ul {
+  display: flex;
+  flex-wrap: nowrap;
+  font-weight: 600;
+  margin-left: 60px;
+}
+
+.primary-nav ul li {
+  list-style: none;
+  margin: 0 25px;
+  font-size: 20px;
+}
+
+.primary-nav li:hover {
+  color: #fff;
+}
+
+.profile {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+}
+
+h2 {
+  color: #fff;
+}
+
+p {
+  color: #aaa;
+  font-size: medium;
+}
+
+.fade {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Secondary Nav */
+.secodary-nav-container {
+  width: 85%;
+  margin: auto;
+}
+
+.buttons {
+  margin-top: 110px;
+}
+
+.buttons ul {
+  list-style: none;
+  display: flex;
+  cursor: pointer;
+  padding-left: 0%;
+}
+
+.buttons ul li {
+  font-size: 14px;
+  margin-right: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px 12px;
+  border-radius: 10px;
+}
+
+.buttons ul li:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Listen again */
+.main-profile {
+  margin-top: 50px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.main-profile img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.profile-avi {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: nowrap;
+}
+
+.secodary-nav {
+  margin-left: -30px;
+}
+
+.profile-text .name.fade {
+  margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+}
+
+.more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  cursor: pointer;
+}
+
+.more p {
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 15px;
+  border-radius: 30px;
+  margin-top: 15px;
+}
+
+.more p:hover {
+  color: #fff;
+  border-color: #fff;
+}
+
+.more i {
+  margin-left: 15px;
+}
+
+.hover:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* New CSS */
+#sidebar {
+  background-color: transparent;
+  width: 70px;
+  min-width: 70px;
+  z-index: 99;
+  transition: all;
+}
+
+#sidebar.expand .sidebarnav {
+  position: fixed;
+  background-color: black;
+}
+
+#sidebar.expand {
+  width: 240px;
+  min-width: 240px;
+  border-right: .5px solid rgba(255, 255, 255, 0.178);
+}
+
+.toggle-btn {
+  background-color: transparent;
+  cursor: pointer;
+  border: 0;
+  padding: 1rem 1.5rem;
+}
+
+.toggle-btn i {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.sidebar-logo {
+  margin: auto 0;
+  width: fit-content;
+}
+
+.sidebar-logo a {
+  color: white;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+#sidebar:not(.expand) .sidebar-logo,
+#sidebar:not(.expand) a.sidebar-link span {
+  display: none;
+}
+
+.sidebarnav {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 70px;
+}
+
+#sidebar.expand .sidebarnav {
+  width: 240px;
+}
+
+.rightsection {
+  display: flex;
+  flex-direction: column;
+}
+
+.rightnav {
+  padding-top: 15px;
+  z-index: 99;
+  position: fixed;
+  width: 500px;
+  height: 65px;
+}
+
+.searchbar {
+  margin-left: 100px;
+  width: 500px !important;
+  background-color: #212121 !important;
+  color: white !important;
+}
+
+.input-icon {
+  position: relative;
+}
+
+.input-icon>i {
+  position: absolute;
+  left: 110px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #aaa;
+}
+
+.input-icon>input {
+  padding-left: 35px;
+}
+
+.input-icon>input::placeholder {
+  padding-left: 20px;
+  color: #fff;
+}
+
+.searchbardiv {
+  margin-left: 80px;
+}
+
+#youtubeMusicLogo{
+  padding-top: 20px;
+}
+
+.sideNavIcons{
+  padding: 0px 20px;
+}
+
+.control-button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 30px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.control-button:hover,
+.volume-control:hover {
+  opacity: 0.7;
+}
+.volume-control {
+  margin-right: 50px;
+  width: 100px !important;
 }

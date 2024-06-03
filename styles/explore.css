@@ -1,23 +1,18 @@
 body {
     font-family: 'Roboto', sans-serif;
-    /* background-color: black; */
     color: white;
-}
-
-.w-85{
-    width: 90%;
 }
 
 .toggleandlogo {
     align-items: center;
 }
 
-::after,
+ ::after,
 ::before {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
+} 
 
 a {
     text-decoration: none;
@@ -45,10 +40,6 @@ h1 {
 #sidebar.expand .sidebarnav{
     position: fixed;
 }
-
-
-
-
 
 #sidebar.expand {
     width: 240px;
@@ -95,12 +86,10 @@ ul li {
     text-decoration: none;
 }
 
-
 .rightsection{
     display: flex;
     flex-direction: column;
 }
-
 
 .rightnav {
     padding-top: 15px;
@@ -110,11 +99,8 @@ ul li {
     height: 65px;
 }
 
-
 .searchbar{
-    /* margin-top: 15px; */
     margin-left: 100px;
-    /* margin-bottom: 15px; */
     width: 500px;
     background-color: rgb(128, 128, 128);
     opacity: 40%;
@@ -146,9 +132,26 @@ ul li {
     margin-left: 80px;
 }
 
+.toprighticons{
+    width: fit-content;
+    position: fixed;
+    top: 15px;
+    right: 10%;
+    z-index: 2000;
+}
 
+.searchicon{
+    display: none;
+    padding-right: 20px;
+    margin-top: 4px;
+}
 
-
+.casticon{
+    margin-top: 5px;
+}
+.top-logo-name{
+    display: none;
+}
 /* New CSS */
 
 .navbarbutton:hover{
@@ -157,54 +160,45 @@ ul li {
 }
 .home {
     align-items: center;
-    font-size: 12px; /* Font size for collapsed state */
+    font-size: 12px; 
     text-align: center;
-    /* padding: 10px 0; */
 }
+
 #sidebar.expand .homeicon {
     padding-left: 10px;
     padding-right: 20px;
 }
 
-
-
-
-
 #sidebar.expand .home {
-    
-    font-size: 16px; /* Font size for expanded state */
+    font-size: 16px; 
 }
 
 #sidebar.expand .sidebar-text {
-    
     display: inline;
-    margin-left: 10px; /* Space between icon and text */
+    margin-left: 10px; 
 }
-
 
 .scrollcontents{
     background-color: black; 
     margin-top: 65px;
-    height: 400vh;
+    /* height: 400vh; */
 }
 
-
-
 .sidebarnav {
-    position: fixed; /* Make the sidebar items fixed */
-    top: 0; /* Position at the top of the viewport */
-    bottom: 0; /* Expand the sidebar items to the bottom of the viewport */
-    width: 70px; /* Set the width of the sidebar when collapsed */
+    position: fixed; 
+    top: 0; 
+    bottom: 0;
+    width: 70px; 
 }
 
 #sidebar.expand .sidebarnav {
-    width: 240px; /* Set the width of the sidebar when expanded */
+    width: 240px;
 }
 
 .newrelease{
     width: 82%;
     margin-left: 9%;
-  
+   
 }
 
 .newreleasebutton{
@@ -214,25 +208,37 @@ ul li {
 .newreleasebutton:hover{
     background-color: rgba(128, 128, 128, 0.151);
 }
+
 h2{
     color: white;
     font-weight: bold;
-    font-size: 150%; /*1.5em*/
-   
+    font-size: 150%;  
 }
+
 .newalbums-singles,.new-music-videos{
     margin-left: 9%;
 }
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+}
+
+.header-container h2 {
+    margin: 0;
+}
+
+
+
+
+
+
 .slider-container {
-    overflow-x: auto;
-    white-space: nowrap;
     margin-left: 9%;
     margin-right: 100px;
-   
-   
   }
  
-  
   .newalbums-singles-slider {
     list-style: none;
     padding: 0;
@@ -244,15 +250,15 @@ h2{
     margin-right: 20px; 
   }
   
-
- 
-
   #items {
     display: flex;
-    flex-wrap: nowrap; /* Ensures items won't wrap to the next line */
-    overflow-x: auto; /* Allows horizontal scrolling if items exceed container width */
+    flex-wrap: nowrap; 
+    overflow-x: hidden; 
+    overflow-y: hidden;
   }
-
+  #items:hover{
+    overflow-x: auto; 
+  }
 
   .song-container {
     display: flex;
@@ -261,19 +267,18 @@ h2{
     margin-left: 10px;
     margin-right: 10px;
     height: 250px;
-   
-
+    margin-bottom: -20px;
+    position: relative;
   }
   
-  /* Style the parent container for image and details */
   .content-container {
-    width: 150px; /* Adjust the width as needed */
+    width: 150px; 
   }
   
-  /* Style the image container */
   .image-container {
     width: 100%;
     margin-top: 2%;
+    position: relative;
   }
    
   .image-container img {
@@ -283,160 +288,310 @@ h2{
     border: none;
     border-radius: 5px;
     display: block;
+    transition: opacity 0.3s ease;
   } 
   
-  /* Style the details container */
+.image-container:hover img {
+    opacity: 0.7;
+  }
+  .image-container .play-icon {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: white;
+    font-size: 24px;
+    background-color: rgba(74, 74, 74, 0.5);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .image-container:hover .play-icon {
+    opacity: 1;
+  }
+  
   .details-container {
     text-align: center;
-    
   }
-/* Style the title */
+
 .title {
     margin-top: 5px;
     font-weight: bold;
-    font-size: 14px;
-   
-    
+    font-size: 14px; 
   }
   
-  /* Style the details */
   .details {
-    font-size: 0.8em; /* Adjust the font size as needed */
-    /* white-space: nowrap; */
+    font-size: 0.8em; 
   }
+
   .newalbums-singles-slider::-webkit-scrollbar, .moods-genres-container::-webkit-scrollbar, .grid-container::-webkit-scrollbar,.trending-container::-webkit-scrollbar{
     background-color: black; 
-   
   }
+
   .newalbums-singles-slider::-webkit-scrollbar-thumb , .moods-genres-container::-webkit-scrollbar-thumb,.grid-container::-webkit-scrollbar-thumb,.trending-container::-webkit-scrollbar-thumb{
-    background-color: rgb(136, 136, 136); 
+    background-color: rgb(103, 103, 103); 
     width: 8px;
     height: 2%;
-    
   }
+
   .moods-genres{
-    margin-top: 13%;
+    margin-top: 9%;
     margin-left: 9%;
     height: 200%;
   }
+
   .moods-genres-container {
-    max-height: 500px; /* Adjust height as needed */
-    overflow-y: hidden; /* Change from 'auto' to 'hidden' */
-    overflow-x: auto; /* Add overflow-x for horizontal scrollbar if needed */
+    max-height: 500px; 
+    overflow-y: hidden; 
+    overflow-x: hidden; 
     white-space: nowrap;
     margin-left: 9%;
     margin-right: 10%;
+}
+.moods-genres-container:hover{
+    overflow-x: auto; 
 }
 
 .moods-genres-lists {
     display: grid;
     grid-auto-flow: column;
-    grid-template-rows: repeat(4, 1fr); /* Example: 4 rows */
+    grid-template-rows: repeat(4, 1fr); 
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    /* grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); Adjust column width as needed */
-     gap: 15px; 
+    gap: 30px; 
     list-style: none;
     white-space: nowrap;
-     margin-bottom: 3%;
+    margin-bottom: 0%;
     width: 150%;
-    margin-left: -4%;
-   
+    margin-left: -4%;  
 }
 
 .card {
     width: 150px;
     height: 90%;
-   
     padding: 10%;
     color: white;
     font-weight: bolder;
     font-size: 90%;
     background-color: rgb(43, 43, 43);
+    transition: opacity 0.3s ease;
+}
+.card:hover{
+    opacity: 0.7;
 }
 
-
-.popular-episodes{
+.popular-episodes {
     margin-left: 9%;
     margin-right: 10%;
+    margin-top: 9%;
 }
-.grid-container{
+.playpopular-icon{
+    position: relative;
+    top: 22px;
+    left: -17%;
+    font-size: 30px;
+    opacity: 0;
+}
+.playpopular-icon:hover{
+    opacity: 1;
+}
+
+.grid-container {
     margin-left: 9%;
     margin-right: 10%;
-    max-height: 500px; /* Adjust height as needed */
-    overflow-y: hidden; /* Change from 'auto' to 'hidden' */
-    overflow-x: auto; /* Add overflow-x for horizontal scrollbar if needed */
+    max-height: 500px;
+    overflow-y: hidden;
+    overflow-x: hidden;
     white-space: nowrap;
 }
-.popular-episodes-lists{
+
+.grid-container:hover{
+    overflow-x: auto;
+}
+
+.popular-episodes-lists {
     display: grid;
     grid-auto-flow: column;
-    grid-template-rows: repeat(3, 1fr); /* Example: 4 rows */
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
     list-style: none;
-    white-space: nowrap;
-     margin-bottom: 3%;
-    width: 150%;
-    margin-left: -4%;
-    gap: 10px;
+    width: 3000px;
+    gap: 10px; 
+    padding: 0;
 }
-.card-episodes{
-    width: 350px;
-    background-color: aliceblue;
+
+.episode-item {
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    width: 500px;
+    margin-top: 10%;
+    
+}
+
+.card-episodes {
+    display: flex;
+}
+
+.card-episodes:hover{
+    opacity: 0.3;
+
+}
+
+  
+.card-episodes img {
+    width: 150px;
+    height: 80px;
+}
+
+.lengthseconds{
+    color: #7d7b7b;
+    font-size: large;
+}
+
+.card-episodes .details {
+    flex: 1;
+    padding-left: 10px;
+}
+
+.card-episodes .details h3 {
+    margin: 0 0 10px 0;
+    font-size: 1em;
+    color: #fff;
+}
+
+.card-episodes .details p {
+    margin: 0;
+    font-size: 1em;
+    font-weight: bold;
+}
+.popular-description{
+    white-space: wrap;
 }
 .trending-container{
-    margin-top: 5%;
-    margin-left: 9%;
+    /* margin-top: 5%; */
+    margin-left: 5%;
     margin-right: 10%;
-    max-height: 500px; /* Adjust height as needed */
-    overflow-y: hidden; /* Change from 'auto' to 'hidden' */
-    overflow-x: auto; /* Add overflow-x for horizontal scrollbar if needed */
-    white-space: nowrap;
-   
+    max-height: 500px; 
+    overflow-y: hidden; 
+    overflow-x: hidden; 
+    white-space: nowrap; 
 }
+
 .table-grid-container {
     display: grid;
     grid-auto-flow: column;
-    grid-template-rows: repeat(3, 1fr); /* Example: 4 rows */
+    grid-template-rows: repeat(4, 1fr); 
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     white-space: nowrap;
-     margin-bottom: 3%;
-     width: 330%;
-    margin-left:9%;
+    margin-bottom: 3%;
     gap: 10px;
-  }
-  .song {
-   
-    padding: 10px;
-    /* text-align:center; */
-    display: flex;
+    width: 100%;
     
   }
+  .trending-container:hover{
+    overflow-x: auto;
+  }
+
+  .song {
+    padding: 10px;
+    display: flex;
+    width: 350px;
+  }
+
   .song img {
     max-width: 10%;
     height: auto;
   }
+
   .serial-number {
     margin-left: 8%;
     margin-right: 8%;
-    /* Push the serial number to the right */
   }
+  .playbutton-icon{
+    position: relative;
+    left: -100%;
+    top: 5%;
+    opacity: 0;
+  }
+  .song img:hover{
+    opacity: 0.5;
+    background-color: rgb(64, 64, 64,0.5);
+  }
+.playbutton-icon:hover{
+    opacity: 0.9;
+}
 .detailsTable{
     line-height: .5px;
    margin-top: 2%; 
-    white-space: wrap; /* Prevent text from wrapping */
+    white-space: wrap; 
     font-size: 0.8em;
 }
-/* .newalbums-singles-slider img{
-    width: 300px;
-} */
+
 .newimage-container img{
     width: 280px;
     height: 150px;
+    opacity: 1;
+}
+
+#newvideos{
+    margin-bottom: -30px;
+}
+
+.slider-container::-webkit-scrollbar{
+background-color: black;
+}
+
+.slider-container::-webkit-scrollbar-thumb{
+    background-color: rgb(103, 103, 103);   
+}
+
+.new-slider{
+     overflow-x: hidden;
+     overflow-y: hidden;
+    white-space: nowrap;
+}
+.new-slider:hover{
+    overflow-x: auto;
+}
+.play-newsongsicon{
+    position: relative;
+    left: -50%;
+    opacity:1;
+   font-size: 50px;
 }
 
 
+.newimage-container:hover{
+    opacity: 0.5;
+}
+.more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    cursor: pointer;
+}
 
+.more p {
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 15px;
+    border-radius: 30px;
+    margin-top: 15px;
+}
 
+.more p:hover {
+    color: #fff;
+    border-color: #fff;
+}
+
+.more i {
+    margin-left: 15px;
+}
+
+.hover:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
 
 
 /* Responsive Design */
@@ -447,6 +602,8 @@ h2{
 
     .newreleasebutton {
         padding: 10px;
+        text-align: left;
+
     }
 
     .navbarbutton .home {
@@ -508,14 +665,49 @@ h2{
         padding: 10px;
     }
 }
-@media (max-width: 992px) {
-    .newrelease {
-        flex-direction: column;
-    }
-
+@media (max-width: 935px) {
+.newreleasebutton{
+    text-align: left;
+    flex-direction: column;
+}
     .newrelease .col-3 {
         width: 100%;
     
         margin: 0 0px 10px 0px;
+    }
+    .first-block{
+        margin-top: -40px;
+    }
+    
+}
+@media (max-width: 615px) {
+    #sidebar{
+        display: none;
+    }
+    .top-logo-name{
+        display: flex;
+    }
+    .listbutton{
+        margin-top: -20px;
+    }
+    }
+    @media only screen and (max-width: 939px) {
+        /* IF SIDE BAR IS OPEN YOU HAVE TO COLLAPSE IT IT AND THE BLUR DIV SHOULD GO UP */
+        /* SIDEBAR OVERLAPS THE MAIN CONTENT */
+        /* ALSO THE BUTTONS SHOULD GO LIKE NORMAL */
+        /* SEARCH BAR ALSO DISAPPEARS ONLY ICON APPEARS */
+        /* MUSIC LIST CHANGES TO ONLY NAMES AND THUMBNAILS */
+        #hiddensearchicon{
+            display: block;
+        }
+        .input-icon{
+            display: none;
+        }
+    }
+
+    @media (max-width: 990px) {
+    .newrelease{
+        margin-left: 0%;
+        width: 100%;
     }
 }

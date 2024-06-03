@@ -1,61 +1,59 @@
+// let songId=localStorage.getItem('songId');
+// if(songId===null){
+//     songId='m87B0ulgN64';
+// }
+let songId='';
+let musicData;
+let videoData;
+const playPauseBtn = document.getElementById('playPauseBtn');
+const playIcon = '<i class="fas fa-play"></i>';
+const pauseIcon = '<i class="fas fa-pause"></i>';
+const fullscreenButton = document.getElementById("fullscreenButton");
+const songProgress = document.getElementById('songProgress');
+const currentTime = document.getElementById('selectedSongTime');
+const muteButton = document.getElementById("muteButton");
+const muteIcon = document.getElementById("muteIcon");
+const unmuteIcon = document.getElementById("unmuteIcon");
+const volumeIcon = '<i class="fas fa-volume-up"></i>';
+const volumeControl = document.getElementById('volumeControl');
+const popUpBtn = document.getElementById('popUpBtn');
+const popUpDiv = document.getElementById('popUpDiv');
+const circleIcon = '<i class="fas fa-circle fa-xs"></i>';
+const popUpIcon = '<i class="fas fa-caret-up"></i>';
+const popDownIcon = '<i class="fas fa-caret-down"></i>';
+const popUpImage = document.getElementById('popUpImage');
+const nextSongBtn = document.getElementById('nextSongBtn');
+const previousSongBtn = document.getElementById('previousSongBtn');
+const videoController = document.getElementById('videoController');
+const loopButton = document.getElementById('loop-button');
+const songLists = document.getElementById('songList');
+const songOtherDetails=document.getElementById('songOtherDetails');
+const songName = document.getElementById('songName');
 
-
-// const selectedSong=document.getElementById('selectedSong');
-const playPauseBtn=document.getElementById('playPauseBtn');
-const playIcon='<i class="fas fa-play"></i>';
-const pauseIcon='<i class="fas fa-pause"></i>';
-let isPlaying=true;
-const songProgress=document.getElementById('songProgress');
-let sliderProgress;
-let songMinutes=0;
-let songSeconds=0;
+// Variables
+let isPlaying = true;
 let songImage;
-// let songImage='../assets/varahai.png';
-const playerSongImage=document.getElementById('playerSongImage');
-// let songName_='Varag NadhiKarai';
 let songName_;
-const songName=document.getElementById('songName');
-// let songArtist='Shankar Mahadevan';
 let songArtist;
 let songDuration;
-// let songAlbum='Sangamam';
-// let songYear='2023';
-const songOtherDetails=document.getElementById('songOtherDetails');
-const circleIcon='<i class="fas fa-circle fa-xs"></i>';
-const popUpBtn=document.getElementById('popUpBtn');
-const popUpDiv=document.getElementById('popUpDiv');
-const popUpIcon='<i class="fas fa-caret-up"></i>';
-const popDownIcon='<i class="fas fa-caret-down"></i>';
-const muteIcon='<i class="fas fa-volume-mute"></i>';
-const volumeIcon='<i class="fas fa-volume-up"></i>';
-const volumeBtn=document.getElementById('volumeBtn');
-const popUpImage=document.getElementById('popUpImage');
-// let songPopUpImage='../assets/varahaipopup.png'
-// let songPopUpImage;
-// const songId = 'm87B0ulgN64';
-let songId=localStorage.getItem('songId');
-console.log("songId: "+songId);
-if(songId===null){
-    songId='m87B0ulgN64';
-}
-console.log("songId: "+songId);
-const nextSongBtn=document.getElementById('nextSongBtn');
-let nextClickCounter=0;
-const previousSongBtn=document.getElementById('previousSongBtn');
-const videoPlayer=document.getElementById('videoPlayer');
+let nextClickCounter = 0;
 let videoUrl;
-const videoController=document.getElementById('videoController');
-let newSongId;
-const songList=document.getElementById('songList');
 
+// navbars code below
 
+const hamBurger = document.querySelector(".toggle-btn");
+hamBurger.addEventListener("click", function () {
+    document.querySelector("#sidebar").classList.toggle("expand");
+});
+
+// navbars code above
 
 async function fetchMusicData(songId) {
     let url = `https://youtube-music-api3.p.rapidapi.com/v2/next?id=${songId}`;
     const options = {
         method: 'GET',
         headers: {
-            'x-rapidapi-key': '33c431b604msh6e6d5181f112eeep19ae7cjsnf5c1fdd3ef0b',
+            'x-rapidapi-key': '520a5da3f0mshe5dda608862ad28p170020jsne02fd8099741',
             'x-rapidapi-host': 'youtube-music-api3.p.rapidapi.com'
         }
     };
@@ -63,7 +61,7 @@ async function fetchMusicData(songId) {
     try {
         const response = await fetch(url, options);
         const result = await response.json();
-        // console.log(result);
+        musicData=result;
         return result;
     } catch (error) {
         console.error(error);
@@ -72,11 +70,12 @@ async function fetchMusicData(songId) {
 }
 
 async function fetchVideo(songId) {
+    console.log("fecth"+songId)
     let url = `https://yt-api.p.rapidapi.com/dl?id=${songId}`;
     const options = {
         method: 'GET',
         headers: {
-            'x-rapidapi-key': '7a6694efccmshbf3595fdaf4c2fep1ac0e1jsn8225601fbcde',
+            'x-rapidapi-key': 'cd9a2c4eedmsh0a5eab8f02b6ec2p1b20c7jsnf421d870c2ae',
             'x-rapidapi-host': 'yt-api.p.rapidapi.com'
         }
     };
@@ -84,7 +83,6 @@ async function fetchVideo(songId) {
     try {
         const response = await fetch(url, options);
         const result = await response.json();
-        // console.log(result);
         return result;
     } catch (error) {
         console.error(error);
@@ -92,332 +90,373 @@ async function fetchVideo(songId) {
     }
 }
 
+async function relatedContent(relatedId) {
+    let url = `https://youtube-music-api3.p.rapidapi.com/related?id=${relatedId}`;
+    const options = {
+        method: 'GET',
+        headers: {
+            'x-rapidapi-key': '520a5da3f0mshe5dda608862ad28p170020jsne02fd8099741',
+            'x-rapidapi-host': 'youtube-music-api3.p.rapidapi.com'
+        }
+    };
 
-// Call fetchMusicData with the desired songId as soon as the page loads
-window.onload = function() {
-  
-    fetchMusicData(songId)
+    try {
+        const response = await fetch(url, options);
+        const result = await response.json();
+        console.log(result)
+        return result[0].items;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}
+
+
+
+async function startMusic() {
+    songProgress.value=0;
+    document.getElementById('songList').innerHTML='';
+    await fetchMusicData(songId)
         .then(data => {
             if (data) {
-                console.log(data);
+                relatedDisplay(data.relatedBrowseId);
                 // Handle the data here
                 songImage = data.nextItems[0].thumbnail;
                 // console.log("songImage: "+songImage);
-                songName_=data.nextItems[0].title;
+                songName_ = data.nextItems[0].title;
                 // console.log("title: "+songName_);
-                songArtist=data.nextItems[0].author;
-                songDuration=data.nextItems[0].duration;
+                songArtist = data.nextItems[0].author;
+                songDuration = data.nextItems[0].duration;
                 // console.log("views: "+songViews);
-                playerSongImage.src=songImage;
-                songName.innerHTML=songName_;
-                songOtherDetails.innerHTML=songArtist+" "+circleIcon+" "+songDuration;
-                popUpImage.src=songImage;
+                playerSongImage.src = songImage;
+                songName.innerHTML = songName_;
+                songOtherDetails.innerHTML = songArtist + " " + circleIcon + " " + songDuration;
+                popUpImage.src = songImage;
+                
                 // console.log("songImage: "+songImage);
 
                 for(let i=0;i<50;i++){
-                const newSongId=data.nextItems[i].videoId;    
-                const newSongImage=data.nextItems[i].thumbnail;
-                const newSongName=data.nextItems[i].title;
-                const newSongOtherDetails=data.nextItems[i].author+" "+circleIcon+" "+data.nextItems[i].duration;
-                const newClickCounter=i;
-                const newListItem = document.createElement("li");
-                newListItem.id="newListItem";
-                newListItem.classList.add("position-relative");
-                const songListDetailsDiv=document.createElement("div");
-                songListDetailsDiv.id="songListDetailsDiv";
-                songListDetailsDiv.classList.add("d-flex", "flex-row", "flex-wrap", "align-items-center", "justify-content-center", "m-0", "p-2");
-                songListDetailsDiv.style.color="white";
-                // Create and append the image element
-                const songListImage = document.createElement("img");
-                songListImage.id = "songListImage";
-                songListImage.classList.add("me-3");
-                songListImage.alt = "songListImage";
-                songListImage.style.height='40px';
-                songListImage.style.borderRadius='2px';
-                songListImage.src=data.nextItems[i].thumbnail;
-                songListDetailsDiv.appendChild(songListImage);
-                // newListItem.appendChild(songListImage);
-                const songListTextDetails = document.createElement("div");
-                songListTextDetails.id = "songListTextDetails";
-                songListTextDetails.classList.add("d-flex", "flex-column", "flex-wrap", "p-0", "m-0", "me-2");
-                // newListItem.appendChild(songListTextDetails);
-                songListDetailsDiv.appendChild(songListTextDetails);
+                   
+                    const newSongImage=data.nextItems[i].thumbnail;
+                    const newSongName=data.nextItems[i].title;
+                    const newSongOtherDetails=data.nextItems[i].author+" "+circleIcon+" "+data.nextItems[i].duration;
+                    let newClickCounter=i;
 
+                    const newListItem = document.createElement("li");
+                    newListItem.id="newListItem";
+                    newListItem.classList.add("position-relative");
+                    const songListDetailsDiv=document.createElement("div");
+                    songListDetailsDiv.id="songListDetailsDiv";
+                    songListDetailsDiv.classList.add("d-flex", "flex-row", "flex-wrap", "align-items-center", "justify-content-center", "m-0", "p-2");
+                    songListDetailsDiv.style.color="white";
 
-                // Create and append the label elements for song name and other details
-                const songListName = document.createElement("label");
-                songListName.id = "songListName";
-                songListName.innerHTML=data.nextItems[i].title;
-                songListTextDetails.appendChild(songListName);
+                    const songListImage = document.createElement("img");
+                    songListImage.id = "songListImage";
+                    songListImage.classList.add("me-3");
+                    songListImage.alt = "songListImage";
+                    songListImage.style.height='40px';
+                    songListImage.style.borderRadius='2px';
+                    songListImage.src=data.nextItems[i].thumbnail;
+                    songListDetailsDiv.appendChild(songListImage);
 
-                const songListOtherDetails = document.createElement("label");
-                songListOtherDetails.id = "songListOtherDetails";
-                songListOtherDetails.innerHTML=data.nextItems[i].author+" "+circleIcon+" "+data.nextItems[i].duration;
-                songListTextDetails.appendChild(songListOtherDetails);
+                    const songListTextDetails = document.createElement("div");
+                    songListTextDetails.id = "songListTextDetails";
+                    songListTextDetails.classList.add("d-flex", "flex-column", "flex-wrap", "p-0", "m-0", "me-2");
+                    songListDetailsDiv.appendChild(songListTextDetails);
 
-                // Append the new list item to the list
-                newListItem.appendChild(songListDetailsDiv);
-                const playPauseOverlay=document.createElement("div");
-                playPauseOverlay.id="playPauseOverlay";
-                playPauseOverlay.innerHTML=playIcon;
-                newListItem.appendChild(playPauseOverlay);
-                songList.appendChild(newListItem);
+                    const songListName = document.createElement("label");
+                    songListName.id = "songListName";
+                    songListName.innerHTML=data.nextItems[i].title;
+                    songListTextDetails.appendChild(songListName);
 
-                newListItem.addEventListener('mouseenter',()=>{
-                    newListItem.style.backgroundColor='grey';
-                    playPauseOverlay.style.opacity='1'
-                    newListItem.style.cursor='pointer'
-                })
-                newListItem.addEventListener('mouseleave',()=>{
-                    newListItem.style.backgroundColor='';
-                    playPauseOverlay.style.opacity=''
-                    newListItem.style.cursor=''
-                })
-                playPauseOverlay.addEventListener('click',()=>{
-                    // localStorage.setItem('songId', newSongId);
-                    // location.reload(true);
-                    nextClickCounter=newClickCounter;
-                    playerSongImage.src=newSongImage;
-                    songName.innerHTML=newSongName;
-                    songOtherDetails.innerHTML=newSongOtherDetails;
-                    popUpImage.src=newSongImage;
-                    async function fetchVideo(newSongId) {
-                        let url = `https://yt-api.p.rapidapi.com/dl?id=${newSongId}`;
-                        const options = {
-                            method: 'GET',
-                            headers: {
-                                'x-rapidapi-key': '7a6694efccmshbf3595fdaf4c2fep1ac0e1jsn8225601fbcde',
-                                'x-rapidapi-host': 'yt-api.p.rapidapi.com'
+                    const songListOtherDetails = document.createElement("label");
+                    songListOtherDetails.id = "songListOtherDetails";
+                    songListOtherDetails.innerHTML=data.nextItems[i].author+" "+circleIcon+" "+data.nextItems[i].duration;
+                    songListTextDetails.appendChild(songListOtherDetails);
+                    newListItem.appendChild(songListDetailsDiv);
+                    const playPauseOverlay=document.createElement("div");
+                    playPauseOverlay.id="playPauseOverlay";
+                    playPauseOverlay.innerHTML=playIcon;
+                    newListItem.appendChild(playPauseOverlay);
+
+                    songLists.appendChild(newListItem);
+
+                    newListItem.addEventListener('mouseenter',()=>{
+                        newListItem.style.backgroundColor='grey';
+                        playPauseOverlay.style.opacity='1'
+                        newListItem.style.cursor='pointer'
+                    })
+                    newListItem.addEventListener('mouseleave',()=>{
+                        newListItem.style.backgroundColor='';
+                        playPauseOverlay.style.opacity=''
+                        newListItem.style.cursor=''
+                    })
+                  
+                    playPauseOverlay.addEventListener('click',()=>{
+                        
+                        nextClickCounter=newClickCounter;
+                        playerSongImage.src=newSongImage;
+                        songName.innerHTML=newSongName;
+                        songOtherDetails.innerHTML=newSongOtherDetails;
+                        popUpImage.src=newSongImage;
+
+                       
+                         fetchVideo(data.nextItems[newClickCounter].videoId)
+                        .then(data => {
+
+                            if (data) {
+                                // nextClickCounter++;
+                                updateSongData(musicData)
+                                videoUrl = data.formats[0].url;
+                                videoPlayer.src=videoUrl;
+                                videoController.load();
+                                videoController.play();
+                                playPauseBtn.innerHTML=pauseIcon;
+                            } else {
+                                console.log("Failed to fetch music data.");
                             }
-                        };
-                    
-                        try {
-                            const response = await fetch(url, options);
-                            const result = await response.json();
-                            // console.log(result);
-                            return result;
-                        } catch (error) {
-                            console.error(error);
-                            return null;
-                        }
-                    }
-            
-                    fetchVideo(newSongId)
-                    .then(data => {
-                        if (data) {
-                            // console.log(data);
-                            // console.log(newSongId);
-                            videoUrl = data.formats[0].url;
-                            // console.log(videoUrl);
-                            videoPlayer.src=videoUrl;
-                            videoPlayer.parentElement.load();
-                            // playPauseBtn.style.color='red';
-                        } else {
-                            console.log("Failed to fetch music data.");
-                        }
+                        });
                     });
-                })
-                }
-
-               
-
-                nextSongBtn.addEventListener('click',()=>{
-                    // playPauseBtn.style.color="white";
-                    // console.log("songId before updating: "+songId);
-                    playPauseBtn.innerHTML=playIcon;
-                    nextClickCounter++;
-                    // console.log(nextClickCounter);
-                    songImage = data.nextItems[nextClickCounter].thumbnail;
-                    // console.log("songImage: "+songImage);
-                    songName_=data.nextItems[nextClickCounter].title;
-                    // console.log("title: "+songName_);
-                    songArtist=data.nextItems[nextClickCounter].author;
-                    songDuration=data.nextItems[nextClickCounter].duration;
-                    newSongId=data.nextItems[nextClickCounter].videoId;
-                    // console.log("newSongId assigned: "+newSongId);
-                    // console.log("views: "+songViews);
-                    playerSongImage.src=songImage;
-                    songName.innerHTML=songName_;
-                    songOtherDetails.innerHTML=songArtist+" "+circleIcon+" "+songDuration;
-                    popUpImage.src=songImage;
-                    async function fetchVideo(newSongId) {
-                        let url = `https://yt-api.p.rapidapi.com/dl?id=${newSongId}`;
-                        const options = {
-                            method: 'GET',
-                            headers: {
-                                'x-rapidapi-key': '7a6694efccmshbf3595fdaf4c2fep1ac0e1jsn8225601fbcde',
-                                'x-rapidapi-host': 'yt-api.p.rapidapi.com'
-                            }
-                        };
-                    
-                        try {
-                            const response = await fetch(url, options);
-                            const result = await response.json();
-                            // console.log(result);
-                            return result;
-                        } catch (error) {
-                            console.error(error);
-                            return null;
-                        }
                     }
-            
-                    fetchVideo(newSongId)
-                    .then(data => {
-                        if (data) {
-                            // console.log(data);
-                            // console.log(newSongId);
-                            videoUrl = data.formats[0].url;
-                            // console.log(videoUrl);
-                            videoPlayer.src=videoUrl;
-                            videoPlayer.parentElement.load();
-                            // playPauseBtn.style.color='red';
-                        } else {
-                            console.log("Failed to fetch music data.");
-                        }
-                    });
-                })
-
-                previousSongBtn.addEventListener('click',()=>{
-                    // playPauseBtn.style.color="white";
-                    // console.log("songId before updating: "+songId);
-                    playPauseBtn.innerHTML=playIcon;
-                    nextClickCounter--;
-                    // console.log(nextClickCounter);
-                    songImage = data.nextItems[nextClickCounter].thumbnail;
-                    // console.log("songImage: "+songImage);
-                    songName_=data.nextItems[nextClickCounter].title;
-                    // console.log("title: "+songName_);
-                    songArtist=data.nextItems[nextClickCounter].author;
-                    songDuration=data.nextItems[nextClickCounter].duration;
-                    newSongId=data.nextItems[nextClickCounter].videoId;
-                    // console.log("newSongId assigned: "+newSongId);
-                    // console.log("views: "+songViews);
-                    playerSongImage.src=songImage;
-                    songName.innerHTML=songName_;
-                    songOtherDetails.innerHTML=songArtist+" "+circleIcon+" "+songDuration;
-                    popUpImage.src=songImage;
-                    async function fetchVideo(newSongId) {
-                        let url = `https://yt-api.p.rapidapi.com/dl?id=${newSongId}`;
-                        const options = {
-                            method: 'GET',
-                            headers: {
-                                'x-rapidapi-key': '7a6694efccmshbf3595fdaf4c2fep1ac0e1jsn8225601fbcde',
-                                'x-rapidapi-host': 'yt-api.p.rapidapi.com'
-                            }
-                        };
-                    
-                        try {
-                            const response = await fetch(url, options);
-                            const result = await response.json();
-                            // console.log(result);
-                            return result;
-                        } catch (error) {
-                            console.error(error);
-                            return null;
-                        }
-                    }
-            
-                    fetchVideo(newSongId)
-                    .then(data => {
-                        if (data) {
-                            // console.log(data);
-                            // console.log(newSongId);
-                            videoUrl = data.formats[0].url;
-                            // console.log(videoUrl);
-                            videoPlayer.src=videoUrl;
-                            videoPlayer.parentElement.load();
-                            // playPauseBtn.style.color='red';
-                        } else {
-                            console.log("Failed to fetch music data.");
-                        }
-                    });
-                })
             } else {
                 console.log("Failed to fetch music data.");
             }
-        });
 
-        fetchVideo(songId)
+        });
+        
+      
+        await fetchVideo(songId)
         .then(data => {
-            if (data) {
-                // console.log(data);
-           
+           console.log("strt1:"+songId)
+            if (data) {  
+                nextClickCounter=0;
+                updateSongData(musicData) 
+                console.log("start1:"); 
+                console.log(data); 
                 videoUrl = data.formats[0].url;
-                // console.log(videoUrl);
+                console.log(videoUrl)
                 videoPlayer.src=videoUrl;
-                videoPlayer.parentElement.load();
-                // playPauseBtn.style.color='red';
-
-                // add new code under 
-
-                
-
-
-
-
+                videoController.load();
+                videoController.play();
+                playPauseBtn.innerHTML=pauseIcon;
             } else {
                 console.log("Failed to fetch music data.");
             }
         });
+    
+};
+ async function relatedDisplay(relatedid) {
+    songProgress.value=0;
+    document.getElementById('related').innerHTML='';
+       const relatedlist= await relatedContent(relatedid);
 
-        playPauseBtn.addEventListener("click",togglePlayPause);
-        function togglePlayPause(){
-            // playPauseBtn.style.color='white';
-            if(videoController.paused){
-                videoController.play();
-                clearInterval(sliderProgress);  
-                sliderprogress = setInterval(() => {
-                    var currTime = Math.floor(videoController.currentTime);  //round down to nearest integer
-                    var percentageComplete = Math.floor((currTime / videoController.duration) * 100);
-                    songProgress.value = percentageComplete;
-                            // console.log(percentageComplete);
-                    songMinutes=Math.floor(currTime/60);
-                    songSeconds=Math.floor(currTime%60);
-                    document.getElementById('selectedSongTime').innerHTML=songMinutes+":"+songSeconds;
-                }, 1000);
-                playPauseBtn.innerHTML=pauseIcon;
-            }
-            else{
-                videoController.pause();
-                playPauseBtn.innerHTML=playIcon;
-            }
-        }
+                // console.log("songImage: "+songImage);
+           relatedlist.forEach(data => {    
+                    const newSongImage=data.thumbnail;
+                    const newSongName=data.title;
+                    const newSongOtherDetails=data.author;
 
-        songProgress.addEventListener('input',()=>{
-            let songTime=(((videoController.duration)*(videoController.value)) / 100);
-            videoController.currentTime=songTime;
-            clearInterval(sliderProgress);  
-            })
-            
-        
-        popUpBtn.addEventListener('click',()=>{
-            if(popUpDiv.style.visibility==='visible'){
-                popUpDiv.style.visibility='hidden';
-                popUpBtn.innerHTML=popUpIcon;
-            }
-            else{
-                popUpDiv.style.visibility='visible';
-                popUpBtn.innerHTML=popDownIcon;
+                    const newListItem = document.createElement("li");
+                    newListItem.id="newListItem";
+                    newListItem.classList.add("position-relative");
+                    const songListDetailsDiv=document.createElement("div");
+                    songListDetailsDiv.id="songListDetailsDiv";
+                    songListDetailsDiv.classList.add("d-flex", "flex-row", "flex-wrap", "align-items-center", "justify-content-center", "m-0", "p-2");
+                    songListDetailsDiv.style.color="white";
 
-            }
-        })
-        
-        volumeBtn.addEventListener('click',()=>{
-            if(videoController.volume===0){
-                videoController.volume=1;
-                volumeBtn.innerHTML=volumeIcon;
-            }
-            else{
-                videoController.volume=0;
-                volumeBtn.innerHTML=muteIcon;
-            }
-        })
+                    const songListImage = document.createElement("img");
+                    songListImage.id = "songListImage";
+                    songListImage.classList.add("me-3");
+                    songListImage.alt = "songListImage";
+                    songListImage.style.height='40px';
+                    songListImage.style.borderRadius='2px';
+                    songListImage.src=newSongImage;
+                    songListDetailsDiv.appendChild(songListImage);
 
+                    const songListTextDetails = document.createElement("div");
+                    songListTextDetails.id = "songListTextDetails";
+                    songListTextDetails.classList.add("d-flex", "flex-column", "flex-wrap", "p-0", "m-0", "me-2");
+                    songListDetailsDiv.appendChild(songListTextDetails);
 
+                    const songListName = document.createElement("label");
+                    songListName.id = "songListName";
+                    songListName.innerHTML=newSongName;
+                    songListTextDetails.appendChild(songListName);
 
-        
-        
-        
+                    const songListOtherDetails = document.createElement("label");
+                    songListOtherDetails.id = "songListOtherDetails";
+                    songListOtherDetails.innerHTML=newSongOtherDetails;
+                    songListTextDetails.appendChild(songListOtherDetails);
+                    newListItem.appendChild(songListDetailsDiv);
+                    const playPauseOverlay=document.createElement("div");
+                    playPauseOverlay.id="playPauseOverlay";
+                    playPauseOverlay.innerHTML=playIcon;
+                    newListItem.appendChild(playPauseOverlay);
+                
+                    document.getElementById("related").appendChild(newListItem);
+
+                    newListItem.addEventListener('mouseenter',()=>{
+                        newListItem.style.backgroundColor='grey';
+                        playPauseOverlay.style.opacity='1'
+                        newListItem.style.cursor='pointer'
+                    })
+                    newListItem.addEventListener('mouseleave',()=>{
+                        newListItem.style.backgroundColor='';
+                        playPauseOverlay.style.opacity=''
+                        newListItem.style.cursor=''
+                    })
+                    playPauseOverlay.addEventListener('click',()=>{
+                        console.log("related:"+data.videoId)
+                        songId=data.videoId;
+                        startMusic();
+
+                    });
+                });
 
 };
+
+popUpBtn.addEventListener('click',()=>{
+    if(popUpDiv.style.visibility==='visible'){
+        popUpDiv.style.visibility='hidden';
+        popUpBtn.innerHTML=popUpIcon;
+    }
+    else{
+        popUpDiv.style.visibility='visible';
+        popUpBtn.innerHTML=popDownIcon;
+
+    }
+})
+
+
+
+// Update song data and video
+async function updateSongData(data)
+ {
+    console.log(data)
+    const songItem = data.nextItems[nextClickCounter];
+    songImage = songItem.thumbnail;
+    songName_ = songItem.title;
+    songArtist = songItem.author;
+    songDuration = songItem.duration;
+    let newSongId = songItem.videoId;
+    playerSongImage.src = songImage;
+    songName.innerHTML = songName_;
+    songOtherDetails.innerHTML = `${songArtist} ${circleIcon} ${songDuration}`;
+    popUpImage.src = songImage;
+     fetchVideo(newSongId).then(videoData => {
+        if (videoData) {
+            console.log("next:"+newSongId);
+            videoUrl = videoData.formats[0].url;
+            videoController.src = videoUrl;
+            videoController.load();
+            videoController.play();
+            playPauseBtn.style.color = 'white';
+            playPauseBtn.innerHTML = pauseIcon;
+
+        } else {
+            console.log("Failed to fetch video data.");
+        }
+    });
+}
+
+// Event listener for next song button
+nextSongBtn.addEventListener('click', () => {
+    nextClickCounter++;
+    updateSongData(musicData);
+    console.log("next")
+});
+
+// Event listener for previous song button
+previousSongBtn.addEventListener('click', () => {
+    nextClickCounter--;
+    updateSongData(musicData);
+});
+
+playPauseBtn.addEventListener("click", togglePlayPause);
+
+function togglePlayPause() {
+    playPauseBtn.style.color = 'white';
+    if (videoController.paused) {
+        videoController.play();
+
+        playPauseBtn.innerHTML = pauseIcon;
+    } else {
+        videoController.pause();
+        playPauseBtn.innerHTML = playIcon;
+    }
+}
+
+videoController.addEventListener("timeupdate", function () {
+    const value = (100 / videoController.duration) * videoController.currentTime;
+    songProgress.value = value;
+    currentTime.textContent = formatTime(videoController.currentTime);
+});
+
+songProgress.addEventListener("input", function () {
+    const time = videoController.duration * (songProgress.value / 100);
+    videoController.currentTime = time;
+});
+
+muteButton.addEventListener("click", function () {
+    videoController.muted = !videoController.muted;
+    if (videoController.muted) {
+        muteIcon.style.display = "none";
+        unmuteIcon.style.display = "inline";
+    } else {
+        muteIcon.style.display = "inline";
+        unmuteIcon.style.display = "none";
+    }
+});
+
+volumeControl.addEventListener("input", function () {
+    videoController.volume = this.value;
+});
+videoController.addEventListener('ended', () => {
+    // Check if looping is enabled
+    if (!videoController.loop) {
+        // Play the next song
+        nextClickCounter++;
+        updateSongData(musicData);
+    }
+});
+fullscreenButton.addEventListener("click", function () {
+    var videoTab = new bootstrap.Tab(document.querySelector('#video-tab'));
+    videoTab.show();
+    if (videoController.requestFullscreen) {
+        popUpDiv.style.visibility='visible';
+        popUpBtn.innerHTML=popDownIcon;
+        videoController.requestFullscreen();
+    } else if (videoController.mozRequestFullScreen) { // Firefox
+        videoController.mozRequestFullScreen();
+    } else if (videoController.webkitRequestFullscreen) { // Chrome, Safari and Opera
+        videoController.webkitRequestFullscreen();
+    } else if (videoController.msRequestFullscreen) { // IE/Edge
+        videoController.msRequestFullscreen();
+    }
+});
+function formatTime(time) {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+}
+// Pop-up button click event
+loopButton.addEventListener('click', () => {
+    if (videoController.loop) {
+        // Disable looping
+        videoController.loop = false;
+        loopButton.style.color = 'white'; // or any other color to indicate loop is off
+    } else {
+        // Enable looping
+        videoController.loop = true;
+        loopButton.style.color = 'red'; // or any other color to indicate loop is on
+    }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    songId=localStorage.getItem('songId');
+    if(songId===null){
+         songId='m87B0ulgN64';
+    }     
+     startMusic();
+});
 

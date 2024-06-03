@@ -1,8 +1,29 @@
 const hamBurger = document.querySelector(".toggle-btn");
+    hamBurger.addEventListener("click", function () {
+    document.querySelector("#sidebar").classList.toggle("expand");
+ });
 
-hamBurger.addEventListener("click", function () {
-  document.querySelector("#sidebar").classList.toggle("expand");
+ document.addEventListener("DOMContentLoaded", function() {
+  const searchInput = document.getElementById("searchInput");
+
+  function performSearch() {
+      const searchTerm = searchInput.value;
+      if (searchTerm) {
+          localStorage.setItem('searchTerm', searchTerm);
+          window.location.href = '../pages/search.html';
+      }
+  }
+
+  // document.getElementById("searchButton").addEventListener("click", performSearch);
+
+  searchInput.addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+          performSearch();
+      }
+  });
 });
+
+
 
 
 async function populateSongs(search) {
@@ -10,11 +31,10 @@ async function populateSongs(search) {
   if (search) {
     url += `q=${search}&type=song`;
   }
-  
   const options = {
     method: 'GET',
     headers: {
-      'x-rapidapi-key': 'd04ddb7ca3msh473b358e94a8eb2p145bd1jsn6298b36506ab',
+      'x-rapidapi-key': 'ea1b194e9dmsh6b3833219aa01bap193a96jsn85817deae478',
       'x-rapidapi-host': 'youtube-music-api3.p.rapidapi.com'
     }
   };
@@ -24,51 +44,53 @@ async function populateSongs(search) {
     if (!response.ok) {
       throw new Error('Failed to fetch songs');
     }
-    const data = await response.json(); // Parsing JSON response
+    const data = await response.json(); 
     renderSongs(data.result);
-    return data.result; // Return the array of songs
-   
+    return data.result; 
   } catch (error) {
     console.error('Error fetching songs:', error);
-    return []; // Return an empty array if an error occurs
+    return []; 
   }
 }
 
-
 document.addEventListener('DOMContentLoaded', () => {
-  const search = 'd se dance'; // Your search query
+  const search = 'd se dance';
   populateSongs(search)
     .then(songs => {
-      const itemsElement = document.getElementById('items'); // Getting the element
-      // Check if songs is defined and is an array
+      const itemsElement = document.getElementById('items'); 
       if (Array.isArray(songs)) {
-        // Loop through each song object in the array of songs and populate the HTML
         songs.forEach(song => {
           const listItem = document.createElement('li');
           listItem.classList.add('song-container');
-
-          // Create a parent container for image and details
           const contentContainer = document.createElement('div');
           contentContainer.classList.add('content-container');
-
-          // Image container
           const imageContainer = document.createElement('div');
           imageContainer.classList.add('image-container');
           const image = document.createElement('img');
-          image.src = song.thumbnail; // Assuming thumbnail is the property containing the image URL
+          image.src = song.thumbnail; 
           imageContainer.appendChild(image);
+          const playIcon = document.createElement('i');
+          playIcon.classList.add('bi', 'bi-caret-right-fill', 'play-icon');
+          imageContainer.appendChild(playIcon);
+          playIcon.addEventListener('click', () => {
+            const videoId = song.video_id;
+            localStorage.setItem('playsong', videoId)
+            window.location.href = '../pages/musicPlayer.html';
+            console.log('Clicked video ID:', videoId);
+            // Add more logic here to handle the click event if needed
+          });
+          
           contentContainer.appendChild(imageContainer);
-          // Details container
           const detailsContainer = document.createElement('div');
           detailsContainer.classList.add('details-container');
           
           const title = document.createElement('p');
-          title.textContent = song.title; // Assuming title is the property containing song name
+          title.textContent = song.title; 
           title.classList.add('title');
           // title.style.whiteSpace = 'break-spaces';
           title.style.overflow = 'hidden';
           const details = document.createElement('p');
-          details.textContent = song.details; // Assuming details is the property containing song details
+          details.textContent = song.details; 
           details.classList.add('details');
           details.style.whiteSpace = 'break-spaces'; 
           details.style.overflow = 'hidden';
@@ -82,9 +104,8 @@ document.addEventListener('DOMContentLoaded', () => {
           detailsContainer.appendChild(title);
           detailsContainer.appendChild(details);
           contentContainer.appendChild(detailsContainer);
-
           listItem.appendChild(contentContainer);
-          itemsElement.appendChild(listItem); // Appending the song element to items
+          itemsElement.appendChild(listItem); 
         });
       } else {
         console.error('Error: Invalid data format for songs');
@@ -96,11 +117,32 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+
+document.addEventListener("DOMContentLoaded", function () {
+  const prevButton = document.getElementById('prevButton');
+  const nextButton = document.getElementById('nextButton');
+  const carouselWrapper = document.querySelector('.slider-container');
+
+  prevButton.addEventListener('click', function () {
+      // Move carousel to the left
+      carouselWrapper.scrollLeft -= carouselWrapper.offsetWidth;
+  });
+
+  nextButton.addEventListener('click', function () {
+      // Move carousel to the right
+      carouselWrapper.scrollLeft += carouselWrapper.offsetWidth;
+  });
+});
+
+
 const categories = [
-  'Hindi', 'Workout', 'Monsoon', 'Party', 'Romance', 'Sleep', 'Feel Good', 'Focus',
-  'Hindi', 'Workout', 'Monsoon', 'Party', 'Romance', 'Sleep', 'Feel Good', 'Focus',
-  'Hindi', 'Workout', 'Monsoon', 'Party', 'Romance', 'Sleep', 'Feel Good', 'Focus',
-  'Hindi', 'Workout', 'Monsoon', 'Party', 'Romance', 'Sleep', 'Feel Good', 'Focus'
+'Hindi', 'Workout', 'Monsoon', 'Party', 'Romance', 'Sleep', 'Feel Good', 'Malayalam',
+'Bollywood', 'Cardio', 'Rainy', 'Celebration', 'Love', 'Nap', 'Happy', 'Study',
+'Desi', 'Fitness', 'Stormy', 'Dance', 'Passion', 'Rest', 'Joy', 'Concentration',
+'Filmi', 'Exercise', 'Drizzle', 'Gathering', 'Affection', 'Dream', 'Smile', 'Work',
+'Indie', 'Yoga', 'Wet', 'Festival', 'Heart', 'Relax', 'Content', 'Attention',
+'Classical', 'Pilates', 'Thunder', 'Event', 'Crush', 'Slumber', 'Bliss', 'Reading'
+
 ];
 
 function renderCategories() {
@@ -119,102 +161,104 @@ function renderCategories() {
     categoriesContainer.appendChild(li);
   });
 }
-
-// Call the function to render the categories
 renderCategories();
 
-/* Define an array of basic colors */
 var basicColors = ['red', 'orange', 'yellow', 'cyan', 'blue', 'blueviolet', '#90EE90','gold','limegreen','antiquewhite'];
-
-/* Select all cards and assign a border-left color randomly from the basic colors array */
 document.querySelectorAll('.card').forEach(function(card) {
     var randomColor = basicColors[Math.floor(Math.random() * basicColors.length)];
     card.style.borderLeft = '5px solid ' + randomColor;
 });
 
+ document.addEventListener('DOMContentLoaded', async () => {
+    const url = 'https://youtube-data8.p.rapidapi.com/playlist/videos/?id=PLcirGkCPmbmFeQ1sm4wFciF03D_EroIfr&hl=en&gl=US';
+   const options = {
+      method: 'GET',
+     headers: {
+        'X-RapidAPI-Key': '1a2851fc19mshd76c482ea687c10p1f3369jsn6763f26dbe97',
+        'X-RapidAPI-Host': 'youtube-data8.p.rapidapi.com'
+     }
+  };
 
-document.addEventListener('DOMContentLoaded', () => {
-  const popularEpisodesList = document.getElementById('episodes-popular');
+  try {
+    const response = await fetch(url, options);
+    const result = await response.json();
 
-  // Sample data
-  // const data = [
-  //     { imgSrc: 'image1.jpg', title: 'Title 1', description: 'Description 1' },
-  //     { imgSrc: 'image2.jpg', title: 'Title 2', description: 'Description 2' },
-  //     { imgSrc: 'image3.jpg', title: 'Title 3', description: 'Description 3' },
-  //     { imgSrc: 'image4.jpg', title: 'Title 4', description: 'Description 4' },
-  //     { imgSrc: 'image5.jpg', title: 'Title 5', description: 'Description 5' },
-  //     { imgSrc: 'image6.jpg', title: 'Title 6', description: 'Description 6' },
-  //     { imgSrc: 'image7.jpg', title: 'Title 7', description: 'Description 7' },
-  //     { imgSrc: 'image8.jpg', title: 'Title 8', description: 'Description 8' },
-  //     { imgSrc: 'image9.jpg', title: 'Title 9', description: 'Description 9' },
-  //     { imgSrc: 'image10.jpg', title: 'Title 10', description: 'Description 10' },
-  //     { imgSrc: 'image11.jpg', title: 'Title 11', description: 'Description 11' },
-  //     { imgSrc: 'image12.jpg', title: 'Title 12', description: 'Description 12' },
-  //     { imgSrc: 'image8.jpg', title: 'Title 8', description: 'Description 8' },
-  //     { imgSrc: 'image9.jpg', title: 'Title 9', description: 'Description 9' },
-  //     { imgSrc: 'image10.jpg', title: 'Title 10', description: 'Description 10' },
-  //     { imgSrc: 'image11.jpg', title: 'Title 11', description: 'Description 11' },
-  //     { imgSrc: 'image12.jpg', title: 'Title 12', description: 'Description 12' },
-  //     { imgSrc: 'image8.jpg', title: 'Title 8', description: 'Description 8' },
-  //     { imgSrc: 'image9.jpg', title: 'Title 9', description: 'Description 9' },
-  //     { imgSrc: 'image10.jpg', title: 'Title 10', description: 'Description 10' },
-  //     { imgSrc: 'image11.jpg', title: 'Title 11', description: 'Description 11' },
-  //     { imgSrc: 'image12.jpg', title: 'Title 12', description: 'Description 12' },
-  // ];
+    // const contents = result.contents; 
+    const contents = result.contents.slice(0, 25); 
+    console.log(contents);
+    const popularEpisodesList = document.getElementById('episodes-popular');
 
-  // Function to create a card inside a list item
-  const createCardInListItem = (item) => {
+    const createCardInListItem = (item) => {
       const li = document.createElement('li');
+      li.className = 'episode-item';
+
       const card = document.createElement('div');
       card.className = 'card-episodes';
 
       const img = document.createElement('img');
-      img.src = item.imgSrc;
+      img.src = item.thumbnails[0].url; // Use the first thumbnail
       img.alt = item.title;
+
+      const playIcon = document.createElement('i');
+      playIcon.classList.add('bi', 'bi-caret-right-fill', 'playpopular-icon');
+      
 
       const details = document.createElement('div');
       details.className = 'details';
+
+      const lengthseconds = document.createElement('p');
+      lengthseconds.className = lengthseconds;
+      lengthseconds.textContent = item.lengthSeconds+"seconds";
 
       const title = document.createElement('h3');
       title.textContent = item.title;
 
       const description = document.createElement('p');
-      description.textContent = item.description;
-
+      description.classList.add("popular-description");
+      description.textContent = item.author.canonicalBaseUrl+ item.title  ||  'No description available';
+      details.appendChild(lengthseconds);
       details.appendChild(title);
       details.appendChild(description);
       card.appendChild(img);
+      card.appendChild(playIcon);
       card.appendChild(details);
       li.appendChild(card);
 
       return li;
-  };
+    };
 
-  // Append cards to the ul
-//   data.forEach(item => {
-//       const listItem = createCardInListItem(item);
-//       popularEpisodesList.appendChild(listItem);
-//   });
- });
+    contents.forEach(content => {
+      const videoDetails = content.video; // Access the video details from the content
+      const listItem = createCardInListItem(videoDetails);
+      popularEpisodesList.appendChild(listItem);
+    });
 
-
+  } catch (error) {
+    console.error(error);
+  }
+});
 
  async function renderSongs(songs) {
-  // const songs = await populateSongs(search);
+  
    const container = document.getElementById('table-grid-container');
-  container.innerHTML = ''; // Clear previous content
-  let serialNumber = 1; // Initialize serial number
- 
+  container.innerHTML = ''; 
+  let serialNumber = 1; 
   songs.forEach(song => {
     const songElement = document.createElement('div');
     songElement.classList.add('song');
+  
+
     
     // Image
     const img = document.createElement('img');
-    img.src = song.thumbnail; // Assuming 'image' is the key for image URL
-    img.alt = song.title; // Assuming 'title' is the key for song title
+    img.src = song.thumbnail; 
+    img.alt = song.title; 
+   
+    const playIcon = document.createElement('i');
+    playIcon.classList.add('bi', 'bi-caret-right-fill', 'playbutton-icon');
+    songElement.appendChild(playIcon);
     
-    // Number (You can replace 'number' with the actual number property from the data)
+ 
     const number = document.createElement('div');
     number.classList.add('serial-number');
     number.textContent = serialNumber++;// Assuming 'number' is the key for song number
@@ -239,11 +283,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 }
 
-// Call renderSongs function with search query if needed
-// Example: renderSongs('Your search query');
-
-// For demo purpose, let's call it without any search query
-renderSongs();
 
 
 
@@ -267,20 +306,31 @@ document.addEventListener('DOMContentLoaded', () => {
           const imageContainer = document.createElement('div');
           imageContainer.classList.add('newimage-container');
           const image = document.createElement('img');
-          image.src = song.thumbnail; // Assuming thumbnail is the property containing the image URL
+          image.src = song.thumbnail; 
+          const playIcon = document.createElement('i');
+          playIcon.classList.add('bi', 'bi-caret-right-fill', 'play-newsongsicon');
+        
+          playIcon.addEventListener('click', () => {
+            const videoId = song.video_id;
+            localStorage.setItem('playsong', videoId)
+            window.location.href = '../pages/musicPlayer.html';
+            console.log('Clicked video ID:', videoId);
+            // Add more logic here to handle the click event if needed
+          });
           imageContainer.appendChild(image);
+          imageContainer.appendChild(playIcon);
           contentContainer.appendChild(imageContainer);
           // Details container
           const detailsContainer = document.createElement('div');
           detailsContainer.classList.add('newdetails-container');
           
           const title = document.createElement('p');
-          title.textContent = song.title; // Assuming title is the property containing song name
+          title.textContent = song.title; 
           title.classList.add('title');
           // title.style.whiteSpace = 'break-spaces';
           title.style.overflow = 'hidden';
           const details = document.createElement('p');
-          details.textContent = song.details; // Assuming details is the property containing song details
+          details.textContent = song.details;
           details.classList.add('details');
           details.style.whiteSpace = 'break-spaces'; 
           details.style.overflow = 'hidden';
@@ -298,7 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
           contentContainer.appendChild(detailsContainer);
 
           newlistItem.appendChild(contentContainer);
-          newvideosElement.appendChild(newlistItem); // Appending the song element to items
+          newvideosElement.appendChild(newlistItem); 
           
         });
       } else {
